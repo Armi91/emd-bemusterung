@@ -1,0 +1,33 @@
+
+// Tutaj dawać nadpisane zmienne z bootstrapa
+$primary: #A48A4C; //Złoty z logo
+// $primary: #1D1D1B; // Ciemny szary z logo
+// $primary: #96918A; //Jasny szary z logo
+$breadcrumb-divider: quote("|");
+$accordion-button-icon: '';
+$accordion-button-active-icon: '';
+$enable-cssgrid: true;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  3xl: 1680px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+  3xl: 1620px
+);
+
+$headings-font-weight: 400;
+$headings-font-family: 'Montserrat';
+$font-family-sans-serif: 'Quicksand';
+

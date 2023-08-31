@@ -1,0 +1,71 @@
+.breadcrumb-item.active {
+    font-weight: 700;
+}
+
+.form-control {
+    &.shadow-sm {
+        &:focus {
+            box-shadow: 0 0.125rem 0.25rem rgb(164 138 76 / 80%) !important;
+        }
+        &.ng-invalid.ng-touched {
+            box-shadow: 0 0.125rem 0.25rem rgb(220 53 69 / 80%) !important
+        }
+    }
+}
+
+.variant {
+    .img-variant {
+        max-width: 300px;
+    }
+}
+
+.debug-div {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    overflow: scroll;
+    width: 300px;
+    height: 300px;
+}
+
+fa-icon {
+    svg {
+        transition: 0.2s transform ease-in-out;
+    }
+    &.rotated {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.electric-equipment {
+    .card {
+        height: 100%;
+        .card-top-img {
+            max-height: 200px;
+            align-self: center;
+            width: auto;
+            max-width: 100%;
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+}
+
+.view {
+    &__image {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    &__element {
+        padding: 30px 0;
+        border-bottom: 1px solid #a1a1a1;
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
