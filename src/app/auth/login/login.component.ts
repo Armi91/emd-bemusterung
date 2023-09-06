@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
       takeUntil(this.notifier$)
     ).subscribe((err) => {
       if (err) {
+        console.log(err);
+        
         this.toastr.error(this.errorTranslateSrv.getMessage(err.code), 'Błąd logowania');
       }
     })

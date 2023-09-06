@@ -19,7 +19,11 @@ export class AuthEffects {
             return this.authSrv.getUserData(user.uid)
           }),
           map((userData) => loginSuccessful({user: userData, loading: false})),
-          catchError((error) => of(loginFailed({error, loading: false})))
+          catchError((error) => {
+            console.log(error);
+            
+            return of(loginFailed({error, loading: false}))
+          })
         )
       })
     )

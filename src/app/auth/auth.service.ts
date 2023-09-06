@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth, AuthError, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "@angular/fire/auth";
 import { doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
-import { Observable, switchMap, of } from 'rxjs';
+import { Observable, switchMap, of, catchError } from 'rxjs';
 import { UserData } from '../interfaces/user-data.interface';
 import { Store } from '@ngrx/store';
 import { setUser } from './auth.actions';
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   getUserData(uid: string): Observable<UserData> {
-    return <Observable<UserData>>docData(doc(this.firestore, `users/${uid}`));
+    return <Observable<UserData>>docData(doc(this.firestore, `users/${uid}`))
   }
 
   logout() {
