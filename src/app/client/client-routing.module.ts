@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientComponent } from './client.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { InitComponent } from './init/init.component';
+import { GeneralChoicesComponent } from './general-choices/general-choices.component';
 
 const routes: Routes = [
   {
@@ -9,10 +11,14 @@ const routes: Routes = [
     component: ClientComponent,
     canActivate: [AuthGuard],
     children: [
-      // {
-      //   path: 'init',
-      //   component: ClientComponent
-      // }
+      {
+        path: 'init',
+        component: InitComponent
+      },
+      {
+        path: 'general',
+        component: GeneralChoicesComponent
+      }
     ]
   }
 ];

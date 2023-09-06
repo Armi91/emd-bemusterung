@@ -38,7 +38,7 @@ import { authReducer } from './auth/auth.reducer';
     StoreModule.forRoot({auth: authReducer}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    NgbModule
+    NgbModule,
   ],
   providers: [
     {provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'},

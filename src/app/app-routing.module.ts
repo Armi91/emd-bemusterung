@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'c/init',
+    redirectTo: 'c/general',
   },
   {
     path: 'auth',

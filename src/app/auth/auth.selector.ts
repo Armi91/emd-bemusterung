@@ -13,6 +13,11 @@ export const selectUserData = createSelector(
     (state) => state.user
 )
 
+export const selectUserId = createSelector(
+    authFeature,
+    (state) => state.user?.uid
+)
+
 export const selectIsLoading = createSelector(
     authFeature,
     (state) => state.loading
