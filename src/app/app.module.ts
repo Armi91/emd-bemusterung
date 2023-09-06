@@ -13,6 +13,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import { authReducer } from './auth/auth.reducer';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       return functions
     }),
     provideStorage(() => getStorage()),
-    StoreModule.forRoot({}, {}),
+    ToastrModule.forRoot({timeOut: 10000, extendedTimeOut: 5000}),
+    StoreModule.forRoot({auth: authReducer}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     NgbModule
