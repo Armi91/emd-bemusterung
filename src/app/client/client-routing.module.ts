@@ -8,6 +8,12 @@ const routes: Routes = [
     path: '',
     component: ClientComponent,
     canActivate: [AuthGuard],
+    children: [
+      // {
+      //   path: 'init',
+      //   component: ClientComponent
+      // }
+    ]
   }
 ];
 
