@@ -4,6 +4,7 @@ import { ClientComponent } from './client.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { InitComponent } from './init/init.component';
 import { GeneralChoicesComponent } from './general-choices/general-choices.component';
+import { RoomsSelectComponent } from './rooms/rooms-select/rooms-select.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: 'init',
         component: InitComponent
+      },
+      {
+        path: 'rooms',
+        component: RoomsSelectComponent
       },
       {
         path: 'general',

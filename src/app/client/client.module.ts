@@ -8,19 +8,22 @@ import { InitComponent } from './init/init.component';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectEffects } from './state/project/project.effects';
 import { GeneralChoicesComponent } from './general-choices/general-choices.component';
+import { RoomsSelectComponent } from './rooms/rooms-select/rooms-select.component';
+import { RoomEffects } from './state/room/room.effects';
 
 
 @NgModule({
   declarations: [
     ClientComponent,
     InitComponent,
-    GeneralChoicesComponent
+    GeneralChoicesComponent,
+    RoomsSelectComponent
   ],
   imports: [
     CommonModule,
     ClientRoutingModule,
     SharedModule,
-    EffectsModule.forFeature([ProjectEffects])
+    EffectsModule.forFeature([ProjectEffects, RoomEffects])
   ]
 })
 export class ClientModule { }

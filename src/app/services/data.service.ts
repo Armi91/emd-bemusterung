@@ -1,19 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, setDoc, Timestamp } from '@angular/fire/firestore';
+import {
+  Firestore,
+  doc,
+  setDoc,
+  Timestamp,
+  docData,
+  updateDoc,
+} from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
-import { firstValueFrom } from 'rxjs';
-import { selectUserData, selectUserId } from '../auth/auth.selector';
-import { updateDoc } from 'firebase/firestore';
+import { Observable, firstValueFrom, map, of, switchMap } from 'rxjs';
+import { selectUserId, selectUserProjectId } from '../auth/auth.selector';
+import { ProjectState } from '../client/state/project/project.state';
+import { RoomState } from '../client/state/room/rooms.state';
+import { roomTypes } from '../data/roomTypes';
+import { RoomData } from '../interfaces/room.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
   constructor(private firestore: Firestore, private store: Store) {}
-// TODO: Add project type
-  async createProject(project: { id: string; }) {
+  
+  get roomTypes$() {
+    return of(roomTypes);
+  }
+  
+  // TODO: Add project type
+  async createProject(project: { id: string }) {
     const docRef = await doc(this.firestore, 'projects', project.id);
-    await setDoc(docRef, { projectData: {...project, lastUpdated: Timestamp.now()} });
+    await setDoc(docRef, {
+      projectData: { ...project, lastUpdated: Timestamp.now() },
+    });
     const uid = await firstValueFrom(this.store.select(selectUserId));
     if (uid) {
       return updateDoc(doc(this.firestore, 'users', uid), {
@@ -22,5 +39,45 @@ export class DataService {
     } else {
       return null;
     }
+  }
+
+  fetchProject(projectId?: string) {
+    if (projectId) {
+      const project = <Observable<{ projectData: ProjectState }>>(
+        docData(doc(this.firestore, `projects/${projectId}`))
+      );
+      return project.pipe(map((project) => project.projectData));
+    } else {
+      return this.store.select(selectUserProjectId).pipe(
+        switchMap((usersProjectId) => {
+          return <Observable<{ projectData: ProjectState }>>(
+            docData(doc(this.firestore, `projects/${usersProjectId}`))
+          );
+        }),
+        map((project) => project.projectData)
+      );
+    }
+  }
+
+  async saveRooms(rooms: RoomState): Promise<any> {
+    console.log(rooms);
+    
+    const projectId = await firstValueFrom(
+      this.store.select(selectUserProjectId)
+    );
+    updateDoc(doc(this.firestore, `projects/${projectId}`), {
+      rooms,
+    });
+  }
+
+  fetchRooms(): Observable<RoomState> {
+    return this.store.select(selectUserProjectId).pipe(
+      switchMap((usersProjectId) => {
+        return <Observable<{ rooms: RoomState }>>(
+          docData(doc(this.firestore, `projects/${usersProjectId}`))
+        );
+      }),
+      map((project) => project.rooms)
+    );
   }
 }

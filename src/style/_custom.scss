@@ -69,3 +69,11 @@ fa-icon {
         }
     }
 }
+
+
+.stretched-form {
+    display: flex;
+    .form-field {
+        flex-grow: 1;
+    }
+}

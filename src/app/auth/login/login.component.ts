@@ -6,8 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ErrorTranslateService } from 'src/app/services/error-translate.service';
 import { Store } from '@ngrx/store';
 import { login } from '../auth.actions';
-import { Observable, Subject, takeUntil } from "rxjs";
+import { Observable, Subject, concatMap, map, mergeMap, of, switchMap, takeUntil } from "rxjs";
 import { selectAuthError, selectIsAuth, selectIsLoading } from '../auth.selector';
+import { ProjectActions } from 'src/app/client/state/project/project.actions';
+import { selectProject } from 'src/app/client/state/project/project.selector';
 
 @Component({
   selector: 'app-login',
@@ -42,9 +44,27 @@ export class LoginComponent implements OnInit {
     })
 
     this.store.select(selectIsAuth).pipe(
-      takeUntil(this.notifier$)
-    ).subscribe((isAuth) => {
-      if (isAuth) {
+      takeUntil(this.notifier$),
+      switchMap((isAuth) => {
+        if (isAuth) {
+          this.store.dispatch(ProjectActions.fetchProject())
+          return this.store.select(selectProject).pipe(
+            map(project => {
+              if (!!project.id) {
+                return 'toRooms';
+              } else {
+                return 'toInit';
+              }
+            })
+          )
+        } else {
+          return of('toLogin')
+        }
+      })
+    ).subscribe((whereToGo) => {
+      if (whereToGo === 'toRooms') {
+        this.router.navigate(['/c/rooms']);
+      } else if (whereToGo === 'toInit') {
         this.router.navigate(['/c/init']);
       }
     })

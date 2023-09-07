@@ -5,3 +5,9 @@ a {
 .color-primary {
     color: $primary;
 }
+
+.full-width {
+    width: 100%;
+    max-width: 100%;
+}
+.form-field { margin: 12px 0;}

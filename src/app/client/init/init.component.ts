@@ -9,14 +9,16 @@ import { ProjectState } from '../state/project/project.state';
 @Component({
   selector: 'app-init',
   templateUrl: './init.component.html',
-  styles: [`mat-form-field { min-width: 100%; max-width: 500px; width: 100%; margin: 12px 0;}`]
+  styles: []
 })
 export class InitComponent {
 
   constructor(
     private fb: FormBuilder,
     private store: Store
-  ) { }
+  ) {
+    
+  }
 
   newProjectForm = this.fb.group({
     name: ['', Validators.required],

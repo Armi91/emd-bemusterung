@@ -8,6 +8,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from "@angular/material/table";
+import { MatSelectModule } from "@angular/material/select";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     MatExpansionModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTableModule,
+    MatSelectModule,
+    MatIconModule
   ],
   exports: [
     CommonModule,
@@ -34,7 +40,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     MatExpansionModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTableModule,
+    MatSelectModule,
+    MatIconModule
   ]
 })
 export class SharedModule { }

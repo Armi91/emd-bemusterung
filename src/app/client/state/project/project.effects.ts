@@ -23,11 +23,23 @@ export class ProjectEffects {
     () => {
       return this.actions$.pipe(
         ofType('[Project] Create Project Successful'),
-        tap(() => {this.router.navigate(['/c/general'])})
+        tap(() => {this.router.navigate(['/c/rooms'])})
       );
     },
     { dispatch: false }
   );
+
+  fetchProject$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType('[Project] Fetch Project'),
+      switchMap(() => {
+        return this.dataSrv.fetchProject().pipe(
+          map((projectData) => ProjectActions.fetchProjectSuccessfull(projectData)),
+          catchError((err) => of(ProjectActions.fetchProjectFailed(err)))
+        );
+      })
+    );
+  })
 
   constructor(
     private actions$: Actions,
