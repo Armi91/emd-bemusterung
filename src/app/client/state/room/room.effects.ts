@@ -15,7 +15,7 @@ export class RoomEffects {
     return this.actions$.pipe(
       ofType(RoomActions.saveRoom),
       switchMap((action) => {
-        return this.dataSrv.saveRooms(action.rooms);
+        return this.dataSrv.saveRoom(action.room);
       }),
       map(() => RoomActions.saveRoomSuccessful()),
       catchError((error) => of(RoomActions.saveRoomFailed({ error })))
@@ -25,10 +25,21 @@ export class RoomEffects {
   $saveRoomSuccessful = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType('[Room] Save Room Successful'),
+        ofType(RoomActions.saveRoomSuccessful),
         tap(() => {
-          this.toastr.success('Zapisano pomyślnie');
-          this.router.navigate(['/c/general']);
+          this.toastr.success('Dodano pokój');
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  $saveRoomFailed = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(RoomActions.saveRoomFailed),
+        tap(() => {
+          this.toastr.error('Wystąpił problem z dodaniem pokoju');
         })
       );
     },
@@ -44,7 +55,43 @@ export class RoomEffects {
       map((rooms) => RoomActions.fetchRoomsSuccessful({ rooms })),
       catchError((error) => of(RoomActions.fetchRoomsFailed({ error })))
     );
-  })
+  });
+
+  $deleteRoom = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(RoomActions.deleteRoom),
+      switchMap((action) => {
+        return this.dataSrv.deleteRoom(action.id);
+      }),
+      map(() => RoomActions.deleteRoomSuccessful()),
+      catchError((error) => of(RoomActions.deleteRoomFailed({ error })))
+    );
+  });
+
+  $deleteRoomSuccessful = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(RoomActions.deleteRoomSuccessful),
+        tap(() => {
+          this.toastr.success('Usunięto pokój');
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  $deleteRoomFailed = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(RoomActions.deleteRoomFailed),
+        tap(() => {
+          this.toastr.error('Wystąpił problem z usunięciem pokoju');
+        })
+      );
+    },
+    { dispatch: false }
+  );
+  
 
   constructor(
     private actions$: Actions,

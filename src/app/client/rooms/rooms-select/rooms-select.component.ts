@@ -10,6 +10,8 @@ import { RoomActions } from '../../state/room/room.actions';
 import { roomTypes } from 'src/app/data/roomTypes';
 import { ofType } from '@ngrx/effects';
 import { setUser } from 'src/app/auth/auth.actions';
+import { ConfirmRoomsDialogComponent } from './confirm-rooms-dialog/confirm-rooms-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-rooms-select',
@@ -29,6 +31,7 @@ export class RoomsSelectComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store,
+    private dialog: MatDialog,
     protected dataSrv: DataService
   ) {
     this.store.dispatch(RoomActions.fetchRooms());
@@ -48,10 +51,15 @@ export class RoomsSelectComponent implements OnInit {
   addRoom() {
     if (this.newRoomForm.valid) {
       this.store.dispatch(
-        RoomActions.addRoom(this.newRoomForm.value as RoomData)
+        RoomActions.saveRoom({room: this.newRoomForm.value as RoomData})
+        // RoomActions.addRoom(this.newRoomForm.value as RoomData)
       );
       this.newRoomForm.reset({ id: autoId() });
     }
+  }
+
+  deleteRoom(id: string) {
+    this.store.dispatch(RoomActions.deleteRoom({ id }));
   }
 
   getRoomTypeName(id: string) {
@@ -59,8 +67,7 @@ export class RoomsSelectComponent implements OnInit {
     return findById(roomTypes, id).name;
   }
 
-  async saveRooms() {
-    const rooms = await firstValueFrom(this.store.select(selectAllRoomsAsObject))
-    this.store.dispatch(RoomActions.saveRoom({rooms}));
+  openDialog() {
+    const dialogRef = this.dialog.open(ConfirmRoomsDialogComponent);
   }
 }

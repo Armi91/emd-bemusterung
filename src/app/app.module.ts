@@ -36,7 +36,7 @@ import { roomReducer } from './client/state/room/room.reducer';
       return functions
     }),
     provideStorage(() => getStorage()),
-    ToastrModule.forRoot({timeOut: 10000, extendedTimeOut: 5000}),
+    ToastrModule.forRoot({timeOut: 10000, extendedTimeOut: 5000, positionClass: 'toast-top-right'}),
     StoreModule.forRoot({auth: authReducer, project: projectReducer, room: roomReducer}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),

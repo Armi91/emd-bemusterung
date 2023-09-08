@@ -35,7 +35,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Akcje</th>
     <td mat-cell *matCellDef="let element">
-      <button mat-raised-button color="warn">Usuń</button>
+      <button mat-raised-button color="warn" (click)="deleteRoom(element.id)">Usuń</button>
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -81,6 +81,6 @@
     Dodaj pomieszczenie
   </button>
 </form>
-<button mat-raised-button color="accent" class="full-width" (click)="saveRooms()">
-  Zapisz i przejdź dalej
+<button mat-raised-button color="accent" class="full-width" (click)="openDialog()">
+  Przejdź dalej
 </button>

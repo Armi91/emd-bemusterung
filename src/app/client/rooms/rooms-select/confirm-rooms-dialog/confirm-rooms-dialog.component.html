@@ -1,0 +1,15 @@
+<h2>Czy dodałeś już wsztkie pokoje?</h2>
+<mat-dialog-content class="mat-typography">
+    <h3>Masz dodane następujące pokoje:</h3>
+    <mat-list>
+        <mat-list-item *ngFor="let room of rooms$ | async">
+            <span matListItemTitle>{{ room.name }}</span>
+            <span matListItemLine>Typ: {{ room.roomType }}</span>
+            <span matListItemLine>Powierzchnia: {{ room.area }}</span>
+        </mat-list-item>
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Wróć</button>
+    <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial routerLink="/c/general">Zatwierdź</button>
+</mat-dialog-actions>

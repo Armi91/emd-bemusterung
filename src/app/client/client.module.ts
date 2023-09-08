@@ -10,6 +10,7 @@ import { ProjectEffects } from './state/project/project.effects';
 import { GeneralChoicesComponent } from './general-choices/general-choices.component';
 import { RoomsSelectComponent } from './rooms/rooms-select/rooms-select.component';
 import { RoomEffects } from './state/room/room.effects';
+import { ConfirmRoomsDialogComponent } from './rooms/rooms-select/confirm-rooms-dialog/confirm-rooms-dialog.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RoomEffects } from './state/room/room.effects';
     ClientComponent,
     InitComponent,
     GeneralChoicesComponent,
-    RoomsSelectComponent
+    RoomsSelectComponent,
+    ConfirmRoomsDialogComponent
   ],
   imports: [
     CommonModule,

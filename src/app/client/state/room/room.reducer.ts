@@ -8,19 +8,18 @@ export const roomReducer = createReducer(
     ...state,
     [id]: { id, name, area, roomType, roomNumber },
   })),
-  on(RoomActions.deleteRoom, (state, { id }) => {
-    const s = { ...state };
-    delete s[id];
-    return {
-      ...state
-    }
-  }),
+  // on(RoomActions.deleteRoom, (state, { id }) => {
+  //   const s = { ...state };
+  //   delete s[id];
+  //   return {
+  //     ...s
+  //   }
+  // }),
   on(RoomActions.saveRoomFailed, RoomActions.fetchRoomsFailed, (state, {error}) => ({
     ...state,
     error
   })),
   on(RoomActions.fetchRoomsSuccessful, (state, newState) => ({
-    ...state,
     ...newState.rooms
   })),
 );

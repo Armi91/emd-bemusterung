@@ -1,4 +1,39 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar>
 <div class="container pb-5" style="margin-top: 86px;">
     <router-outlet></router-outlet>
-</div>
+</div> -->
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/client" routerLinkActive="active">Home</a>
+      <a mat-list-item routerLink="/client/clients" routerLinkActive="active"
+        >Clients</a
+      >
+      <a
+        mat-list-item
+        routerLink="/client/clients/create"
+        routerLinkActive="active"
+        >Create Client</a
+      >
+      <a
+        mat-list-item
+        routerLink="/client/clients/edit"
+        routerLinkActive="active"
+        >Edit Client</a
+      >
+      <a
+        mat-list-item
+        routerLink="/client/clients/delete"
+        routerLinkActive="active"
+        >Delete Client</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content
+    ><div class="container pb-5" style="margin-top: 86px">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- <router-outlet></router-outlet> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

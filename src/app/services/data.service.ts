@@ -6,6 +6,7 @@ import {
   Timestamp,
   docData,
   updateDoc,
+  deleteField,
 } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { Observable, firstValueFrom, map, of, switchMap } from 'rxjs';
@@ -67,6 +68,26 @@ export class DataService {
     );
     updateDoc(doc(this.firestore, `projects/${projectId}`), {
       rooms,
+    });
+  }
+
+  async deleteRoom(roomId: string): Promise<any> {
+    const projectId = await firstValueFrom(
+      this.store.select(selectUserProjectId)
+    );
+    return updateDoc(doc(this.firestore, `projects/${projectId}`), {
+      [`rooms.${roomId}`]: deleteField(),
+    });
+  }
+
+  async saveRoom(room: RoomData): Promise<any> {
+    const projectId = await firstValueFrom(
+      this.store.select(selectUserProjectId)
+    );
+    
+    const projectRef = doc(this.firestore, `projects/${projectId}`);
+    return updateDoc(projectRef, {
+      [`rooms.${room.id}`]: room
     });
   }
 
