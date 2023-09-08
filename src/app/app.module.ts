@@ -18,10 +18,15 @@ import { ToastrModule } from 'ngx-toastr';
 import { authReducer } from './auth/auth.reducer';
 import { projectReducer } from './client/state/project/project.reducer';
 import { roomReducer } from './client/state/room/room.reducer';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,11 @@ import { roomReducer } from './client/state/room/room.reducer';
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     NgbModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [
     {provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'},

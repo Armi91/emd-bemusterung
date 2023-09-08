@@ -5,7 +5,8 @@ export interface ProjectState {
     code: string;
     apartmentNumber: string;
     lastUpdated: Timestamp;
-    error: any;
+    error?: any;
+    isAccepted: boolean;
 }
 
 export const initialProjectState: ProjectState = {
@@ -14,5 +15,6 @@ export const initialProjectState: ProjectState = {
     code: '',
     apartmentNumber: '',
     lastUpdated: Timestamp.now(),
-    error: null
+    error: null,
+    isAccepted: false
 }

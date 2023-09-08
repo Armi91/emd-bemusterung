@@ -9,21 +9,35 @@ import { Router } from '@angular/router';
 export class ProjectEffects {
   createProject$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType('[Project] Create Project'),
-      switchMap((project) => {
-        return from(this.dataSrv.createProject(project)).pipe(
-          map((project) => ProjectActions.createProjectSuccessful()),
-          catchError((err) => of(ProjectActions.createProjectFailed(err)))
-        );
-      })
+      ofType(ProjectActions.createProject),
+      switchMap(
+        // { apartmentNumber, code, id, isAccepted, lastUpdated, name }
+        ({ apartmentNumber, code, id, isAccepted, lastUpdated, name }) => {
+          return from(
+            this.dataSrv.createProject({
+              apartmentNumber,
+              code,
+              id,
+              isAccepted,
+              lastUpdated,
+              name,
+            })
+          ).pipe(
+            map(() => ProjectActions.createProjectSuccessful()),
+            catchError((err) => of(ProjectActions.createProjectFailed(err)))
+          );
+        }
+      )
     );
   });
 
   createProjectSuccessful$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType('[Project] Create Project Successful'),
-        tap(() => {this.router.navigate(['/c/rooms'])})
+        ofType(ProjectActions.createProjectSuccessful),
+        tap(() => {
+          this.router.navigate(['/c/rooms']);
+        })
       );
     },
     { dispatch: false }
@@ -31,15 +45,17 @@ export class ProjectEffects {
 
   fetchProject$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType('[Project] Fetch Project'),
+      ofType(ProjectActions.fetchProject),
       switchMap(() => {
         return this.dataSrv.fetchProject().pipe(
-          map((projectData) => ProjectActions.fetchProjectSuccessfull(projectData)),
+          map((projectData) =>
+            ProjectActions.fetchProjectSuccessfull(projectData)
+          ),
           catchError((err) => of(ProjectActions.fetchProjectFailed(err)))
         );
       })
     );
-  })
+  });
 
   constructor(
     private actions$: Actions,

@@ -11,6 +11,7 @@ import { GeneralChoicesComponent } from './general-choices/general-choices.compo
 import { RoomsSelectComponent } from './rooms/rooms-select/rooms-select.component';
 import { RoomEffects } from './state/room/room.effects';
 import { ConfirmRoomsDialogComponent } from './rooms/rooms-select/confirm-rooms-dialog/confirm-rooms-dialog.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ConfirmRoomsDialogComponent } from './rooms/rooms-select/confirm-rooms-
     InitComponent,
     GeneralChoicesComponent,
     RoomsSelectComponent,
-    ConfirmRoomsDialogComponent
+    ConfirmRoomsDialogComponent,
+    SidenavComponent
   ],
   imports: [
     CommonModule,

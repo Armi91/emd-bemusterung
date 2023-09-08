@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { autoId, findById } from 'src/app/helpers';
-import { selectAllRooms, selectAllRoomsAsObject } from '../../state/room/room.selector';
+import {
+  selectAllRooms,
+  selectAllRoomsAsObject,
+} from '../../state/room/room.selector';
 import { RoomData } from 'src/app/interfaces/room.interface';
 import { Observable, firstValueFrom } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
@@ -28,6 +31,14 @@ export class RoomsSelectComponent implements OnInit {
     'actions',
   ];
 
+  newRoomForm = this.fb.group({
+    id: [autoId()],
+    name: ['', Validators.required],
+    area: [0, [Validators.required, Validators.min(0)]],
+    roomType: ['bathroom', Validators.required],
+    roomNumber: ['', Validators.required],
+  });
+
   constructor(
     private fb: FormBuilder,
     private store: Store,
@@ -40,21 +51,21 @@ export class RoomsSelectComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  newRoomForm = this.fb.group({
-    id: [autoId()],
-    name: ['', Validators.required],
-    area: [0, [Validators.required, Validators.min(0)]],
-    roomType: ['bathroom', Validators.required],
-    roomNumber: ['', Validators.required],
-  });
-
   addRoom() {
     if (this.newRoomForm.valid) {
       this.store.dispatch(
-        RoomActions.saveRoom({room: this.newRoomForm.value as RoomData})
+        RoomActions.saveRoom({ room: this.newRoomForm.value as RoomData })
         // RoomActions.addRoom(this.newRoomForm.value as RoomData)
       );
       this.newRoomForm.reset({ id: autoId() });
+      this.newRoomForm.markAsPristine();
+      this.newRoomForm.markAsUntouched();
+      this.newRoomForm.setErrors(null);
+      Object.values(this.newRoomForm.controls).forEach((control) => {
+        control.markAsPristine();
+        control.markAsUntouched();
+        control.setErrors(null);
+      });
     }
   }
 

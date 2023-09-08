@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { autoId } from 'src/app/helpers';
 import { ProjectActions } from '../state/project/project.actions';
 import { ProjectState } from '../state/project/project.state';
+import { ProjectData } from 'src/app/interfaces/project.interface';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class InitComponent {
   newProjectFormSubmit() {
     if (this.newProjectForm.valid) {
       // TODO: Implement Dispatch Action
-      this.store.dispatch(ProjectActions.createProject(this.newProjectForm.value as ProjectState));
+      this.store.dispatch(ProjectActions.createProject(this.newProjectForm.value as ProjectData));
     }
   }
   

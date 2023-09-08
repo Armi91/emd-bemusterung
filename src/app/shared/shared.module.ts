@@ -14,6 +14,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     MatIconModule,
     MatDialogModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatToolbarModule
   ],
   exports: [
     CommonModule,
@@ -52,7 +54,8 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     MatIconModule,
     MatDialogModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatToolbarModule
   ]
 })
 export class SharedModule { }

@@ -2,6 +2,7 @@ import { RoomData } from "src/app/interfaces/room.interface"
 
 export interface RoomState {
     [id: string]: RoomData;
+    error?: any;
 }
 
 export const roomInitialState: RoomState = {}

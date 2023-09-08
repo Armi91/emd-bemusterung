@@ -1,13 +1,22 @@
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .color-primary {
-    color: $primary;
+  color: $primary;
 }
 
 .full-width {
-    width: 100%;
-    max-width: 100%;
+  width: 100%;
+  max-width: 100%;
 }
-.form-field { margin: 12px 0;}
+.form-field {
+  margin: 12px 0;
+  width: 100%;
+}
+
+.mat-table {
+    tr, td, thead, th {
+      vertical-align: middle;
+    }
+}

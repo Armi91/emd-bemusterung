@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Actions, act, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { RoomActions } from './room.actions';
 import { DataService } from 'src/app/services/data.service';
-import { RoomState } from './rooms.state';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectAllRooms, selectAllRoomsAsObject } from './room.selector';
 
 @Injectable()
 export class RoomEffects {
@@ -48,7 +46,7 @@ export class RoomEffects {
 
   $fetchRooms = createEffect(() => {
     return this.actions$.pipe(
-      ofType('[Room] Fetch Rooms'),
+      ofType(RoomActions.fetchRooms),
       switchMap(() => {
         return this.dataSrv.fetchRooms();
       }),
