@@ -16,6 +16,14 @@ import { RoomState } from '../client/state/room/rooms.state';
 import { roomTypes } from '../data/roomTypes';
 import { RoomData } from '../interfaces/room.interface';
 import { ProjectData } from '../interfaces/project.interface';
+import { generalChoiceElements } from '../data/general-choice-elements';
+import { RoomElement } from '../interfaces/room-element.interface';
+// import { floor } from '../data/elements/floor';
+import { walls } from '../data/elements/walls';
+import { windowsills } from '../data/elements/windowsill';
+import { doors } from '../data/elements/doors';
+import { doorHardware } from '../data/elements/doorHardware';
+import { electricEquipment } from '../data/elements/electricEquipment';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +35,38 @@ export class DataService {
     return of(roomTypes);
   }
 
-  // TODO: Add project type
+  get generalChoiceElements() {
+    return generalChoiceElements;
+  }
+
+  getElement(elementId: string): Observable<RoomElement | null> {
+    let element: Observable<RoomElement | null>;
+    switch (elementId) {
+      // case 'floor':
+      //   element = of(floor);
+      //   break;
+      case 'walls':
+        element = of(walls);
+        break;
+      case 'windowsills':
+        element = of(windowsills);
+        break;
+      case 'doors':
+        element = of(doors);
+        break;
+      case 'doorHardware':
+        element = of(doorHardware);
+        break;
+      case 'electricEquipment':
+        element = of(electricEquipment);
+        break;
+      default:
+        element = of(null);
+        break;
+    }
+    return element;
+  }
+
   async createProject(project: ProjectData) {
     try {
       const docRef = await doc(this.firestore, 'projects', project.id);

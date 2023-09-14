@@ -1,4 +1,4 @@
-import { DEFAULT_CURRENCY_CODE, NgModule, isDevMode } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule, forwardRef, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
@@ -23,6 +23,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatRadioButton } from '@angular/material/radio';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,7 @@ import { MatListModule } from '@angular/material/list';
   ],
   providers: [
     {provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'},
+    {provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}}
   ],
   bootstrap: [AppComponent]
 })

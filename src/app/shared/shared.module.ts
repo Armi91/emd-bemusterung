@@ -15,6 +15,9 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatCardModule } from "@angular/material/card";
+import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatDialogModule,
     MatListModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule,
+    MatCardModule,
+    MatRadioModule
   ],
   exports: [
     CommonModule,
@@ -55,7 +61,10 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatDialogModule,
     MatListModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule,
+    MatCardModule,
+    MatRadioModule
   ]
 })
 export class SharedModule { }

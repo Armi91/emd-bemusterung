@@ -1,0 +1,38 @@
+<ng-container *ngIf="element | async as element">
+  <form *ngIf="form" [formGroup]="form" class="mt-4">
+    <mat-radio-group formControlName="levelId">
+      <div class="elements-grid">
+        <mat-card *ngFor="let level of element.levels">
+          <mat-card-header>
+            <mat-card-title-group class="elements-grid__card-title-group">
+              <img
+                mat-card-lg-image
+                [src]="level.image"
+                class="elements-grid__image" />
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content class="elements-grid__card-content">
+            <p [innerHTML]="level.description"></p>
+            <p class="align-self-end">
+              {{ level.level === "standard" ? "Standard" : "Merhpeis" }}
+              <span class="fw-bold" *ngIf="level.level === 'mehrprice'"
+                >ca. {{ level.extraPrice | currency }}</span
+              >
+              <span *ngIf="level.level === 'mehrprice'">
+                /
+                {{
+                  element.priceFor === "meter"
+                    ? "m2"
+                    : element.priceFor === "item"
+                    ? "pc."
+                    : ""
+                }}</span
+              >
+            </p>
+            <mat-radio-button [value]="level.id"> Wybierz </mat-radio-button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-radio-group>
+  </form>
+</ng-container>

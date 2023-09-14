@@ -1,1 +1,14 @@
-<p>general-choices works!</p>
+<!-- Add angular material stepper -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-stepper>
+    <mat-step #stepRef
+      *ngFor="let step of generalChoiceElements; let i = index"
+      errorMessage="Należy uzupełnić">
+      <ng-template matStepLabel>{{ step.name }}</ng-template>
+      <app-single-element-edit
+        [elementId]="step.id"
+        (formReady)="onFormReady($event, stepRef)"></app-single-element-edit>
+    </mat-step>
+  </mat-stepper>
+  <button mat-button type="submit">Zapisz</button>
+</form>

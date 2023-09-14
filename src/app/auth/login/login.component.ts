@@ -63,7 +63,8 @@ export class LoginComponent implements OnInit {
       })
     ).subscribe((whereToGo) => {
       if (whereToGo === 'toRooms') {
-        this.router.navigate(['/c/rooms']);
+        // TODO: Zmienić na /c/rooms
+        this.router.navigate(['/c/general']);
       } else if (whereToGo === 'toInit') {
         this.router.navigate(['/c/init']);
       }
