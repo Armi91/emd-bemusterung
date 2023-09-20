@@ -1,4 +1,4 @@
-<ng-container *ngIf="element | async as element">
+<ng-container *ngIf="element">
   <form *ngIf="form" [formGroup]="form" class="mt-4">
     <mat-radio-group formControlName="levelId">
       <div class="elements-grid">
@@ -13,6 +13,16 @@
           </mat-card-header>
           <mat-card-content class="elements-grid__card-content">
             <p [innerHTML]="level.description"></p>
+            <mat-form-field
+              *ngIf="
+                elementId === 'walls' &&
+                form.controls['levelId'].value === 'coloredPaint' &&
+                level.id === 'coloredPaint'
+              "
+              class="ml-3">
+              <mat-label>Kolor RAL</mat-label>
+              <input type="text" matInput formControlName="variantId" />
+            </mat-form-field>
             <p class="align-self-end">
               {{ level.level === "standard" ? "Standard" : "Merhpeis" }}
               <span class="fw-bold" *ngIf="level.level === 'mehrprice'"
@@ -29,10 +39,59 @@
                 }}</span
               >
             </p>
+            <button mat-button color="accent"
+            *ngIf="
+                variants.length > 1 &&
+                form.controls['levelId'].value === level.id
+              "
+              (click)="scrollToElement('variants-' + element.id)">Wybierz wariant</button>
             <mat-radio-button [value]="level.id"> Wybierz </mat-radio-button>
           </mat-card-content>
         </mat-card>
       </div>
     </mat-radio-group>
+
+    <!-- Variants -->
+    <mat-radio-group formControlName="variantId" *ngIf="variants.length">
+      <h2 class="mat-headline-4 mt-4">Wybierz wariant</h2>
+      <div class="elements-grid" [id]="'variants-' + element.id">
+        <mat-card *ngFor="let variant of variants">
+          <mat-card-header>
+            <mat-card-title-group class="elements-grid__card-title-group">
+              <img
+                mat-card-lg-image
+                [src]="variant.image"
+                class="elements-grid__image" />
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content class="elements-grid__card-content">
+            <p [innerHTML]="variant.description"></p>
+            <mat-radio-button [value]="variant.id"> Wybierz </mat-radio-button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-radio-group>
+
+    <!-- Walls extras -->
+    <ng-container *ngIf="element.id === 'walls'">
+      <h3 class="mat-headline-5 mt-3">Tapeta</h3>
+      <mat-checkbox formControlName="wallpaper"
+        >Chcę tapetę na ścianach</mat-checkbox
+      >
+      <h3 class="mat-headline-5 mt-3">Sufit</h3>
+      <mat-radio-group formControlName="ceilingLevelId" #ceilingLevel>
+        <mat-radio-button value="white">Biały</mat-radio-button>
+        <mat-radio-button value="color">Kolor</mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field
+        *ngIf="form.controls['ceilingLevelId'].value === 'color'"
+        class="ms-3">
+        <mat-label>Kolor RAL</mat-label>
+        <input type="text" matInput formControlName="ceilingVariantId" />
+      </mat-form-field>
+    </ng-container>
+
+    <!-- Floor extras -->
+    <ng-container *ngIf="element.id === 'floor'"> </ng-container>
   </form>
 </ng-container>

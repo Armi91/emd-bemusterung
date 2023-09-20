@@ -1,8 +1,8 @@
 export const generalChoiceElements = [
-    // {
-    //     id: 'floor',
-    //     name: 'Bodenbelage',
-    // },
+    {
+        id: 'floor',
+        name: 'Bodenbelage',
+    },
     {
         id: 'walls',
         name: 'Wände',

@@ -16,23 +16,23 @@ export class GeneralChoicesService {
       case 'floor':
         form = this.fb.group({
           levelId: ['', Validators.required],
-          variantId: ['', Validators.required],
+          variantId: [''],
           baseboard: ['', Validators.required],
         });
         break;
       case 'walls':
         form = this.fb.group({
           levelId: ['', Validators.required],
-          variantId: ['', Validators.required],
+          variantId: [''],
           wallpaper: [false, Validators.required],
           ceilingLevelId: ['', Validators.required],
-          ceilingVariantId: ['', Validators.required],
+          ceilingVariantId: [''],
         });
         break;
       default:
         form = this.fb.group({
           levelId: ['', Validators.required],
-          variantId: ['', Validators.required],
+          variantId: [''],
         });
         break;
     }

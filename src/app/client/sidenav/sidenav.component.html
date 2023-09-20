@@ -5,30 +5,41 @@
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-  >
-    <mat-toolbar>Menu</mat-toolbar>
+    [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>BEMUSTERUNG</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item routerLink="/c/rooms">Pomieszczenia</a>
+      <a mat-list-item routerLink="/c/general">Ogólne</a>
+      <a mat-list-item routerLink="">Sanitarne</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="">
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()"
-        
-      >
+        (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span style="flex: 1 1 auto;"></span>
-      <span>Bemusterung</span>
-      <span style="flex: 1 1 auto;"></span>
-      <span>Bemusterung</span>
+      <span style="flex: 1 1 auto"></span>
+      <span>
+        <img
+          src="assets/images/logo-emd.png"
+          alt="EMD Projects"
+          class="header-logo" />
+      </span>
+      <span style="flex: 1 1 auto"></span>
+      <ng-container *ngIf="user$ | async as user">
+        <button mat-raised-button extended [matMenuTriggerFor]="menu">
+          {{ user.firstname + " " + user.lastname }}
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Profil</button>
+          <button mat-menu-item>Wyloguj</button>
+        </mat-menu>
+      </ng-container>
     </mat-toolbar>
     <!-- Add Content Here -->
     <div class="p-4">

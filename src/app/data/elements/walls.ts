@@ -133,18 +133,18 @@ export const walls: RoomElement = {
             level: 'mehrprice',
             extraPrice: 110,
             forGeneralChoices: false,
-            image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_1 .jpg',
+            image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_1.jpg',
             description: `Fliesen bis 60 cm x 60 cm, Stärke ca. 10mm, Bemusterung aus zwei Linien: Serie 1: Romagna oder Serie 2 Umbrien (jeweils drei/vier Muster pro Linie) Linien untereinander nicht kombinierbar ohne Sockelleisten (nur dauerelastische Verfugung), ausgenommen Badezimmer - dort mit Sockelleisten`,
             variants: [
                 {
                     id: '1',
                     description: `Romagna Anthrazit `,
-                    image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_1 .jpg'
+                    image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_1.jpg'
                 },
                 {
                     id: '2',
                     description: `Romagna Hellgrau`,
-                    image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_2_.jpg'
+                    image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_2.jpg'
                 },
                 {
                     id: '3',
@@ -244,11 +244,6 @@ export const walls: RoomElement = {
             image: 'assets/images/items/walls/Oberflaeche_Farbe_2_4_6_1.png',
             description: `Alpinaweiss. ALPINAWEISS DAS ORIGINAL - WEISSE INNENFARBE Mit Spritz-Schutz-Formel: bis zu 100% spritzfrei streichen<br> Frei von Löse- und Konservierungsmitteln Perfekt für die Raumluft: emissionsarm und geruchsneutral<br> Scheuerbeständig, Nassabrieb Klasse 2 nach DIN EN 13 300<br> Gleichmäßige, streifenfreie Oberfläche<br> Farbton: Alpinaweiß, matt`,
             variants: [
-                {
-                    id: '1',
-                    description: ``,
-                    image: 'assets/images/items/walls/Oberflaeche_Farbe_2_4_6_1.png'
-                }
             ],
             title: 'Innenwand- Oberfläche. Wandfabe Weiss'
         },

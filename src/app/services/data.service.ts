@@ -24,6 +24,7 @@ import { windowsills } from '../data/elements/windowsill';
 import { doors } from '../data/elements/doors';
 import { doorHardware } from '../data/elements/doorHardware';
 import { electricEquipment } from '../data/elements/electricEquipment';
+import { floor } from '../data/elements/floor';
 
 @Injectable({
   providedIn: 'root',
@@ -42,9 +43,9 @@ export class DataService {
   getElement(elementId: string): Observable<RoomElement | null> {
     let element: Observable<RoomElement | null>;
     switch (elementId) {
-      // case 'floor':
-      //   element = of(floor);
-      //   break;
+      case 'floor':
+        element = of(floor);
+        break;
       case 'walls':
         element = of(walls);
         break;

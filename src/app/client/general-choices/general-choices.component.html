@@ -1,6 +1,6 @@
 <!-- Add angular material stepper -->
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-stepper>
+  <mat-stepper color="accent">
     <mat-step #stepRef
       *ngFor="let step of generalChoiceElements; let i = index"
       errorMessage="Należy uzupełnić">

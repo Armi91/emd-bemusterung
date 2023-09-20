@@ -18,6 +18,9 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatCardModule } from "@angular/material/card";
 import { MatRadioModule } from "@angular/material/radio";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatMenuModule } from "@angular/material/menu";
+
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import { MatRadioModule } from "@angular/material/radio";
     MatToolbarModule,
     MatStepperModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCheckboxModule,
+    MatMenuModule
   ],
   exports: [
     CommonModule,
@@ -64,7 +69,9 @@ import { MatRadioModule } from "@angular/material/radio";
     MatToolbarModule,
     MatStepperModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCheckboxModule,
+    MatMenuModule
   ]
 })
 export class SharedModule { }
