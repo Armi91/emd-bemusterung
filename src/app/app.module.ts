@@ -1,15 +1,15 @@
 import { DEFAULT_CURRENCY_CODE, NgModule, forwardRef, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideFunctions,getFunctions, connectFunctionsEmulator } from '@angular/fire/functions';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideFunctions, getFunctions, connectFunctionsEmulator } from '@angular/fire/functions';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -26,11 +26,10 @@ import { MatListModule } from '@angular/material/list';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatRadioButton } from '@angular/material/radio';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { generalChoiceReducer } from './client/state/general-choice/general-choice.reducer';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,13 +38,22 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideFunctions(() => {
-      const functions = getFunctions()
+      const functions = getFunctions();
       connectFunctionsEmulator(functions, 'localhost', 5001);
-      return functions
+      return functions;
     }),
     provideStorage(() => getStorage()),
-    ToastrModule.forRoot({timeOut: 10000, extendedTimeOut: 5000, positionClass: 'toast-top-right'}),
-    StoreModule.forRoot({auth: authReducer, project: projectReducer, room: roomReducer}),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      extendedTimeOut: 5000,
+      positionClass: 'toast-top-right',
+    }),
+    StoreModule.forRoot({
+      auth: authReducer,
+      project: projectReducer,
+      room: roomReducer,
+      generalChoice: generalChoiceReducer,
+    }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     NgbModule,
@@ -56,9 +64,9 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatListModule,
   ],
   providers: [
-    {provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'},
-    {provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}}
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    { provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

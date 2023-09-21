@@ -25,6 +25,7 @@ import { doors } from '../data/elements/doors';
 import { doorHardware } from '../data/elements/doorHardware';
 import { electricEquipment } from '../data/elements/electricEquipment';
 import { floor } from '../data/elements/floor';
+import { GeneralChoiceState, generalChoiceInitialState } from '../client/state/general-choice/general-choice.state';
 
 @Injectable({
   providedIn: 'root',
@@ -114,27 +115,21 @@ export class DataService {
   async saveRooms(rooms: RoomState): Promise<any> {
     console.log(rooms);
 
-    const projectId = await firstValueFrom(
-      this.store.select(selectUserProjectId)
-    );
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
     updateDoc(doc(this.firestore, `projects/${projectId}`), {
       rooms,
     });
   }
 
   async deleteRoom(roomId: string): Promise<any> {
-    const projectId = await firstValueFrom(
-      this.store.select(selectUserProjectId)
-    );
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
     return updateDoc(doc(this.firestore, `projects/${projectId}`), {
       [`rooms.${roomId}`]: deleteField(),
     });
   }
 
   async saveRoom(room: RoomData): Promise<any> {
-    const projectId = await firstValueFrom(
-      this.store.select(selectUserProjectId)
-    );
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
 
     const projectRef = doc(this.firestore, `projects/${projectId}`);
     return updateDoc(projectRef, {
@@ -150,6 +145,26 @@ export class DataService {
         );
       }),
       map((project) => project.rooms)
+    );
+  }
+
+  async saveGeneralChoice(generalChoice: GeneralChoiceState): Promise<any> {
+    console.log(generalChoice);
+
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
+    updateDoc(doc(this.firestore, `projects/${projectId}`), {
+      generalChoice,
+    });
+  }
+
+  fetchGeneralChoice(): Observable<GeneralChoiceState> {
+    return this.store.select(selectUserProjectId).pipe(
+      switchMap((usersProjectId) => {
+        return <Observable<{ generalChoice: GeneralChoiceState }>>(
+          docData(doc(this.firestore, `projects/${usersProjectId}`))
+        );
+      }),
+      map((project) => project.generalChoice || generalChoiceInitialState)
     );
   }
 }

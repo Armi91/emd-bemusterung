@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RoomElement } from '../interfaces/room-element.interface';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GeneralChoicesService {
+
+  generalChoicesFetched$ = new BehaviorSubject<boolean>(false);
+
   constructor(private dataSrv: DataService, private fb: FormBuilder) {}
 
   createSubform(elementId: string): FormGroup<any> {

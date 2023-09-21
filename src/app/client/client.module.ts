@@ -13,6 +13,7 @@ import { RoomEffects } from './state/room/room.effects';
 import { ConfirmRoomsDialogComponent } from './rooms/rooms-select/confirm-rooms-dialog/confirm-rooms-dialog.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SingleElementEditComponent } from './single-element-edit/single-element-edit.component';
+import { GeneralChoiceEffects } from './state/general-choice/general-choice.effects';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { SingleElementEditComponent } from './single-element-edit/single-element
     CommonModule,
     ClientRoutingModule,
     SharedModule,
-    EffectsModule.forFeature([ProjectEffects, RoomEffects])
+    EffectsModule.forFeature([ProjectEffects, RoomEffects, GeneralChoiceEffects])
   ]
 })
 export class ClientModule { }

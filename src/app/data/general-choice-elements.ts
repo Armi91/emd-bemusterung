@@ -1,4 +1,10 @@
-export const generalChoiceElements = [
+export type GeneralChoiceElementId = 'floor' | 'walls' | 'windowsills' | 'doors' | 'doorHardware' | 'electricEquipment';
+export type GeneralChoiceElement = {
+    id: GeneralChoiceElementId;
+    name: string;
+}
+
+export const generalChoiceElements: GeneralChoiceElement[] = [
     {
         id: 'floor',
         name: 'Bodenbelage',
