@@ -1,0 +1,14 @@
+<ng-container *ngIf="room">
+  <h3>{{ room.name }} [{{ room.roomNumber }}]</h3>
+  <p>Powierzchnia: {{ room.area }} m<sup>2</sup></p>
+  <mat-form-field style="width: 100%">
+    <mat-label>Co chcesz edytować?</mat-label>
+    <mat-select #el>
+      <mat-option *ngFor="let element of elementsToChange" [value]="element.id">
+        {{ element.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="addElementToChange(el)" [disabled]="!el.value">Dodaj zmianę</button>
+  <app-file-upload></app-file-upload>
+</ng-container>

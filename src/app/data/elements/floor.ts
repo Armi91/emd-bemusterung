@@ -80,6 +80,7 @@ export const floor: RoomElement = {
       extraPrice: 0,
       level: 'standard',
       image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_1.jpg',
+      forSanitarGeneralChoices: true,
       variants: [
         {
           id: '1',
@@ -126,6 +127,7 @@ export const floor: RoomElement = {
       description:
         'Mikrozement, Muster / Farbton nach Wahl, Schichtstärke insgesamt ca. 4mm, ohne Sockelleisten (nur dauerelastische Verfugung) Oberflächenbeschichtung Standard matt',
       image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_1.jpg',
+      forSanitarGeneralChoices: true,
       variants: [
         {
           id: '1',

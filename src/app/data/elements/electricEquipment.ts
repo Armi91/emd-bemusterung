@@ -1,7 +1,7 @@
 import { RoomElement } from "src/app/interfaces/room-element.interface";
 
 export const electricEquipment: RoomElement = {
-    id: 'electricalEquipment',
+    id: 'electricEquipment',
     name: 'Elektrotechnik',
     priceFor: 'item',
     elementType: 'electric',
@@ -14,6 +14,8 @@ export const electricEquipment: RoomElement = {
             description: `Elektropunkt (Wahlweise Steckdose / einfacher Schalter / Lichtauslass) in den Wohnräumen`,
             extraPrice: 0,
             variants: [],
+            forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
         },
         {
             id: 'socket_black',
@@ -22,6 +24,8 @@ export const electricEquipment: RoomElement = {
             description: `Schalterprogram (Steckdose oder Schalter) in schwarzer Ausführung, pro Stück`,
             extraPrice: 25,
             variants: [],
+            forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
         },
         {
             id: 'switch_white',

@@ -1,4 +1,3 @@
-<!-- Add angular material stepper -->
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-stepper color="accent">
     <mat-step #stepRef
@@ -6,9 +5,11 @@
       errorMessage="Należy uzupełnić">
       <ng-template matStepLabel>{{ step.name }}</ng-template>
       <app-single-element-edit
-        [elementId]="step.id"
+        *ngFor="let choice of step.choices"
+        [elementId]="choice.id"
+        [forGeneralChoice]="true"
         (formReady)="onFormReady($event, stepRef)"></app-single-element-edit>
     </mat-step>
   </mat-stepper>
-  <button mat-button type="submit">Zapisz</button>
+  <button mat-raised-button type="submit" color="accent">Zapisz</button>
 </form>

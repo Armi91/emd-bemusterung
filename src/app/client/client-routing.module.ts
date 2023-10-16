@@ -5,6 +5,8 @@ import { AuthGuard } from '../auth/auth.guard';
 import { InitComponent } from './init/init.component';
 import { GeneralChoicesComponent } from './general-choices/general-choices.component';
 import { RoomsSelectComponent } from './rooms/rooms-select/rooms-select.component';
+import { GeneralChoicesSanitarComponent } from './general-choices/general-choices-sanitar/general-choices-sanitar.component';
+import { RoomEditComponent } from './room-edit/room-edit.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,14 @@ const routes: Routes = [
       {
         path: 'general',
         component: GeneralChoicesComponent
+      },
+      {
+        path: 'general-sanitar',
+        component: GeneralChoicesSanitarComponent
+      },
+      {
+        path: 'room/:roomId/edit',
+        component: RoomEditComponent
       }
     ]
   }

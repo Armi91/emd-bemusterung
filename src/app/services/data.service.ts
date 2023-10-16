@@ -16,7 +16,10 @@ import { RoomState } from '../client/state/room/rooms.state';
 import { roomTypes } from '../data/roomTypes';
 import { RoomData } from '../interfaces/room.interface';
 import { ProjectData } from '../interfaces/project.interface';
-import { generalChoiceElements } from '../data/general-choice-elements';
+import {
+  generalChoiceElements,
+  generalChoiceSanitarElements,
+} from '../data/general-choice-elements';
 import { RoomElement } from '../interfaces/room-element.interface';
 // import { floor } from '../data/elements/floor';
 import { walls } from '../data/elements/walls';
@@ -25,7 +28,22 @@ import { doors } from '../data/elements/doors';
 import { doorHardware } from '../data/elements/doorHardware';
 import { electricEquipment } from '../data/elements/electricEquipment';
 import { floor } from '../data/elements/floor';
-import { GeneralChoiceState, generalChoiceInitialState } from '../client/state/general-choice/general-choice.state';
+import {
+  GeneralChoiceState,
+  generalChoiceInitialState,
+} from '../client/state/general-choice/general-choice.state';
+import {
+  flushPlate,
+  showerSystemDrain,
+  showerSystemFitting,
+  showerSystemOther,
+  sink,
+  sinkFaucet,
+  toilet,
+} from '../data/sanitar';
+import { GeneralChoiceSanitarState, generalChoiceSanitarInitialState } from '../client/state/general-choice-sanitar/general-choice-sanitar.state';
+import { FileData } from '../interfaces/file.interface';
+import { FilesState } from '../client/state/files/files.state';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +57,10 @@ export class DataService {
 
   get generalChoiceElements() {
     return generalChoiceElements;
+  }
+
+  get generalChoiceSanitarElements() {
+    return generalChoiceSanitarElements;
   }
 
   getElement(elementId: string): Observable<RoomElement | null> {
@@ -62,10 +84,32 @@ export class DataService {
       case 'electricEquipment':
         element = of(electricEquipment);
         break;
+      case 'sink':
+        element = of(sink);
+        break;
+      case 'sinkFaucet':
+        element = of(sinkFaucet);
+        break;
+      case 'toilet':
+        element = of(toilet);
+        break;
+      case 'flushPlate':
+        element = of(flushPlate);
+        break;
+      case 'showerSystemFitting':
+        element = of(showerSystemFitting);
+        break;
+      case 'showerSystemDrain':
+        element = of(showerSystemDrain);
+        break;
+      case 'showerSystemOther':
+        element = of(showerSystemOther);
+        break;
       default:
         element = of(null);
         break;
     }
+
     return element;
   }
 
@@ -166,5 +210,61 @@ export class DataService {
       }),
       map((project) => project.generalChoice || generalChoiceInitialState)
     );
+  }
+
+  fetchGeneralChoiceSanitar(): Observable<GeneralChoiceSanitarState> {
+    return this.store.select(selectUserProjectId).pipe(
+      switchMap((usersProjectId) => {
+        return <Observable<{ generalChoiceSanitar: GeneralChoiceSanitarState }>>(
+          docData(doc(this.firestore, `projects/${usersProjectId}`))
+        );
+      }),
+      map((project) => project.generalChoiceSanitar || generalChoiceSanitarInitialState)
+    );
+  }
+
+  async saveGeneralChoiceSanitar(generalChoiceSanitar: GeneralChoiceSanitarState): Promise<any> {
+    console.log(generalChoiceSanitar);
+
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
+    updateDoc(doc(this.firestore, `projects/${projectId}`), {
+      generalChoiceSanitar,
+    });
+  }
+
+  fetchFiles(): Observable<FilesState> {
+    return this.store.select(selectUserProjectId).pipe(
+      switchMap((usersProjectId) => {
+        return <Observable<{ files: FilesState }>>(
+          docData(doc(this.firestore, `projects/${usersProjectId}`))
+        );
+      }),
+      map((project) => project.files)
+    );
+  }
+
+  async deleteFile(id: string): Promise<any> {
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
+    return updateDoc(doc(this.firestore, `projects/${projectId}`), {
+      [`files.${id}`]: deleteField(),
+    });
+  }
+
+  async addFile(file: FileData): Promise<any> {
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
+
+    const projectRef = doc(this.firestore, `projects/${projectId}`);
+    return updateDoc(projectRef, {
+      [`files.${file.id}`]: file,
+    });
+  }
+
+  async updateFileDescription(fileId: string, description: string): Promise<any> {
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
+
+    const projectRef = doc(this.firestore, `projects/${projectId}`);
+    return updateDoc(projectRef, {
+      [`files.${fileId}.description`]: description,
+    });
   }
 }

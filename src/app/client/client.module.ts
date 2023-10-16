@@ -14,6 +14,11 @@ import { ConfirmRoomsDialogComponent } from './rooms/rooms-select/confirm-rooms-
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SingleElementEditComponent } from './single-element-edit/single-element-edit.component';
 import { GeneralChoiceEffects } from './state/general-choice/general-choice.effects';
+import { GeneralChoicesSanitarComponent } from './general-choices/general-choices-sanitar/general-choices-sanitar.component';
+import { RoomEditComponent } from './room-edit/room-edit.component';
+import { GeneralChoiceSanitarEffects } from './state/general-choice-sanitar/general-choice-sanitar.effects';
+import { FilesDialogComponent } from './files-dialog/files-dialog.component';
+import { FilesEffects } from './state/files/files.effects';
 
 
 @NgModule({
@@ -24,13 +29,16 @@ import { GeneralChoiceEffects } from './state/general-choice/general-choice.effe
     RoomsSelectComponent,
     ConfirmRoomsDialogComponent,
     SidenavComponent,
-    SingleElementEditComponent
+    SingleElementEditComponent,
+    GeneralChoicesSanitarComponent,
+    RoomEditComponent,
+    FilesDialogComponent
   ],
   imports: [
     CommonModule,
     ClientRoutingModule,
     SharedModule,
-    EffectsModule.forFeature([ProjectEffects, RoomEffects, GeneralChoiceEffects])
+    EffectsModule.forFeature([ProjectEffects, RoomEffects, GeneralChoiceEffects, GeneralChoiceSanitarEffects, FilesEffects])
   ]
 })
 export class ClientModule { }

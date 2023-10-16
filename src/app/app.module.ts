@@ -27,6 +27,9 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatRadioButton } from '@angular/material/radio';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { generalChoiceReducer } from './client/state/general-choice/general-choice.reducer';
+import { generalChoiceSanitarReducer } from './client/state/general-choice-sanitar/general-choice-sanitar.reducer';
+import { connectStorageEmulator } from 'firebase/storage';
+import { filesReducer } from './client/state/files/files.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,7 +45,11 @@ import { generalChoiceReducer } from './client/state/general-choice/general-choi
       connectFunctionsEmulator(functions, 'localhost', 5001);
       return functions;
     }),
-    provideStorage(() => getStorage()),
+    provideStorage(() => {
+      const storage = getStorage();
+      connectStorageEmulator(storage, 'localhost', 9199);
+      return storage;
+    }),
     ToastrModule.forRoot({
       timeOut: 10000,
       extendedTimeOut: 5000,
@@ -53,6 +60,8 @@ import { generalChoiceReducer } from './client/state/general-choice/general-choi
       project: projectReducer,
       room: roomReducer,
       generalChoice: generalChoiceReducer,
+      generalChoiceSanitar: generalChoiceSanitarReducer,
+      files: filesReducer
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),

@@ -18,6 +18,7 @@ export interface ElementLevel {
     title?: string;
     isTextVariant?: boolean;
     forGeneralChoices?: boolean;
+    forSanitarGeneralChoices?: boolean;
 }
 
 export interface LevelVariant {

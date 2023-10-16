@@ -38,6 +38,7 @@
         <th mat-header-cell *matHeaderCellDef>Akcje</th>
         <td mat-cell *matCellDef="let element">
           <button mat-raised-button color="warn" (click)="deleteRoom(element.id)">Usuń</button>
+          <button mat-raised-button color="primary" [routerLink]="['/c/room', element.id, 'edit']" class="ms-3">Edytuj</button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

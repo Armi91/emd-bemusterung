@@ -10,8 +10,8 @@ export const generalChoiceReducer = createReducer(
       ...state,
       [elementId]: {
         ...state[elementId],
-        selectedLevel,
-        selectedVariant: ''
+        levelId: selectedLevel,
+        variantId: ''
       },
     })
   ),
@@ -21,7 +21,7 @@ export const generalChoiceReducer = createReducer(
       ...state,
       [elementId]: {
         ...state[elementId],
-        selectedVariant,
+        variantId: selectedVariant,
       },
     })
   ),
@@ -29,14 +29,14 @@ export const generalChoiceReducer = createReducer(
     ...state,
     walls: {
       ...state['walls'],
-      selectedWallpaper,
+      wallpaper: selectedWallpaper,
     },
   })),
   on(GeneralChoiceActions.updateBaseboard, (state, { selectedBaseboard }) => ({
     ...state,
     floor: {
       ...state['floor'],
-      selectedBaseboard,
+      baseboard: selectedBaseboard,
     },
   })),
   on(
@@ -45,8 +45,8 @@ export const generalChoiceReducer = createReducer(
       ...state,
       walls: {
         ...state['walls'],
-        selectedCeilingLevel,
-        selectedCeilingVariant: '',
+        ceilingLevelId: selectedCeilingLevel,
+        ceilingVariantId: '',
       },
     })
   ),
@@ -56,7 +56,7 @@ export const generalChoiceReducer = createReducer(
       ...state,
       walls: {
         ...state['walls'],
-        selectedCeilingVariant,
+        ceilingVariantId: selectedCeilingVariant,
       },
     })
   ),

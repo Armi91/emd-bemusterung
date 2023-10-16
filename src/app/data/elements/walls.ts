@@ -14,6 +14,7 @@ export const walls: RoomElement = {
             forGeneralChoices: false,
             image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_1.jpg',
             description: `Mikrozement, Muster / Farbton nach Wahl, Schichtstärke insgesamt ca. 4mm, ohne Sockelleisten (nur dauerelastische Verfugung) Oberflächenbeschichtung Standard matt`,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',
@@ -135,6 +136,7 @@ export const walls: RoomElement = {
             forGeneralChoices: false,
             image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_1.jpg',
             description: `Fliesen bis 60 cm x 60 cm, Stärke ca. 10mm, Bemusterung aus zwei Linien: Serie 1: Romagna oder Serie 2 Umbrien (jeweils drei/vier Muster pro Linie) Linien untereinander nicht kombinierbar ohne Sockelleisten (nur dauerelastische Verfugung), ausgenommen Badezimmer - dort mit Sockelleisten`,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',

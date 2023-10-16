@@ -14,6 +14,7 @@ export const windowsills: RoomElement = {
             description: `Verspachtelt, breite 8cm`,
             extraPrice: 0,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: []
         },
         {
@@ -23,6 +24,7 @@ export const windowsills: RoomElement = {
             description: `Fensterbank Innen aus:<br>- Holz, Eiche, natur geölt, Überstand vorne 3cm. Dicke 25mm<br>- Holz - Eiche weiß gebeizt, keilgezinkt, Überstand vorne 3cm. Dicke 25mm`,
             extraPrice: 100,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',
@@ -43,6 +45,7 @@ export const windowsills: RoomElement = {
             description: `- Innenfensterbänke aus MDF ( oberfl. folie). Dicke 25-30mm,gerade Ecken`,
             extraPrice: 0,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',
@@ -73,6 +76,7 @@ export const windowsills: RoomElement = {
             description: `Innenfensterbänke aus MDF ( oberfl. lakiert). Dicke 20-25mm, gerade Ecken.`,
             extraPrice: 0,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',
@@ -98,6 +102,7 @@ export const windowsills: RoomElement = {
             description: `-Fensterbretter aus Aglomarmur . Dicke 30mm, gerade Ecken`,
             extraPrice: 0,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',

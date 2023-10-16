@@ -12,3 +12,7 @@ export interface RoomType {
     icon: string;
     avaliableWallMaterials: string[];
 }
+
+export interface RoomExtras {
+  
+}

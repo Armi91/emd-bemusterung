@@ -14,6 +14,7 @@ export const doors: RoomElement = {
             description: `Innentüren mit Röhrenspan-Kern, gefälzte Tür, in 3 Standardfarben erhältlich. sichtbare Scharniere. Abgerundete Kanten R2,5 mm. Tur Zarge einstellbar`,
             extraPrice: 0,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',
@@ -39,6 +40,7 @@ export const doors: RoomElement = {
             description: `Innentüren mit Röhrenspan-Kern, gefälzte Tür, in 3 Farben erhältlich. sichtbare Scharniere. Abgerundete Kanten R2,5 mm`,
             extraPrice: 0,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',
@@ -64,6 +66,7 @@ export const doors: RoomElement = {
             description: `Innentüren mit Röhrenspan-Kern, und mit 4 Lichtausschnitte. Abgerundete Kanten R2,5 mm, Lichtausschnitte Glas: Milchglas VSG22.1`,
             extraPrice: 0,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',

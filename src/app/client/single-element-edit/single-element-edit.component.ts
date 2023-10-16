@@ -6,7 +6,11 @@ import { GeneralChoicesService } from 'src/app/services/general-choices.service'
 import { LevelVariant } from 'src/app/interfaces/room-element.interface';
 import { Store } from '@ngrx/store';
 import { GeneralChoiceActions } from '../state/general-choice/general-choice.actions';
-import { GeneralChoiceElementId } from 'src/app/data/general-choice-elements';
+import {
+  GeneralChoiceElementId,
+  GeneralChoiceSanitarElementId,
+} from 'src/app/data/general-choice-elements';
+import { GeneralChoiceSanitarActions } from '../state/general-choice-sanitar/general-choice-sanitar.actions';
 
 @Component({
   selector: 'app-single-element-edit',
@@ -14,10 +18,12 @@ import { GeneralChoiceElementId } from 'src/app/data/general-choice-elements';
   styles: [],
 })
 export class SingleElementEditComponent implements OnInit, OnDestroy {
-  @Input({ required: true }) elementId!: GeneralChoiceElementId;
+  @Input({ required: true }) elementId!: GeneralChoiceElementId | GeneralChoiceSanitarElementId;
+  @Input() forGeneralChoice = false;
+  @Input() forSanitarGeneralChoice: boolean = false;
   @Output() formReady = new EventEmitter<{
     form: FormGroup;
-    elementId: GeneralChoiceElementId;
+    elementId: GeneralChoiceElementId | GeneralChoiceSanitarElementId;
   }>();
 
   form!: FormGroup;
@@ -30,7 +36,7 @@ export class SingleElementEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.gcService
-      .getElement(this.elementId, false)
+      .getElement(this.elementId, this.forGeneralChoice, this.forSanitarGeneralChoice)
       .pipe(take(1))
       .subscribe((element) => {
         this.element = element;
@@ -52,12 +58,21 @@ export class SingleElementEditComponent implements OnInit, OnDestroy {
     this.form.controls['levelId'].valueChanges
       .pipe(takeUntil(this.notifier$))
       .subscribe((levelId: string) => {
-        this.store.dispatch(
-          GeneralChoiceActions.updateLevel({
-            elementId: this.elementId,
-            selectedLevel: levelId,
-          })
-        );
+        if (this.forGeneralChoice) {
+          this.store.dispatch(
+            GeneralChoiceActions.updateLevel({
+              elementId: <GeneralChoiceElementId>this.elementId,
+              selectedLevel: levelId,
+            })
+          );
+        } else if (this.forSanitarGeneralChoice) {
+          this.store.dispatch(
+            GeneralChoiceSanitarActions.updateLevel({
+              elementId: <GeneralChoiceSanitarElementId>this.elementId,
+              selectedLevel: levelId,
+            })
+          );
+        }
         this.variants = this.element?.levels.find((level) => level.id === levelId)?.variants || [];
         if (this.variants.length < 1) {
           this.variants = [];
@@ -93,9 +108,17 @@ export class SingleElementEditComponent implements OnInit, OnDestroy {
       this.form.controls['ceilingLevelId'].valueChanges
         .pipe(takeUntil(this.notifier$))
         .subscribe((ceilingLevelId) => {
-          this.store.dispatch(
-            GeneralChoiceActions.updateCeilingLevel({ selectedCeilingLevel: ceilingLevelId })
-          );
+          if (this.forGeneralChoice) {
+            this.store.dispatch(
+              GeneralChoiceActions.updateCeilingLevel({ selectedCeilingLevel: ceilingLevelId })
+            );
+          } else if (this.forSanitarGeneralChoice) {
+            this.store.dispatch(
+              GeneralChoiceSanitarActions.updateCeilingLevel({
+                selectedCeilingLevel: ceilingLevelId,
+              })
+            );
+          }
           if (ceilingLevelId === 'white') {
             this.form.controls['ceilingVariantId'].setValue('');
             if (this.form.controls['ceilingVariantId'].hasValidator(Validators.required)) {
@@ -115,12 +138,21 @@ export class SingleElementEditComponent implements OnInit, OnDestroy {
     this.form.controls['variantId'].valueChanges
       .pipe(takeUntil(this.notifier$))
       .subscribe((variantId) => {
-        this.store.dispatch(
-          GeneralChoiceActions.updateVariant({
-            elementId: this.elementId,
-            selectedVariant: variantId,
-          })
-        );
+        if (this.forGeneralChoice) {
+          this.store.dispatch(
+            GeneralChoiceActions.updateVariant({
+              elementId: <GeneralChoiceElementId>this.elementId,
+              selectedVariant: variantId,
+            })
+          );
+        } else if (this.forSanitarGeneralChoice) {
+          this.store.dispatch(
+            GeneralChoiceSanitarActions.updateVariant({
+              elementId: <GeneralChoiceSanitarElementId>this.elementId,
+              selectedVariant: variantId,
+            })
+          );
+        }
       });
   }
 
@@ -130,9 +162,15 @@ export class SingleElementEditComponent implements OnInit, OnDestroy {
         this.form.controls['baseboard'].valueChanges
           .pipe(takeUntil(this.notifier$))
           .subscribe((baseboard) => {
-            this.store.dispatch(
-              GeneralChoiceActions.updateBaseboard({ selectedBaseboard: baseboard })
-            );
+            if (this.forGeneralChoice) {
+              this.store.dispatch(
+                GeneralChoiceActions.updateBaseboard({ selectedBaseboard: baseboard })
+              );
+            } else if (this.forSanitarGeneralChoice) {
+              this.store.dispatch(
+                GeneralChoiceSanitarActions.updateBaseboard({ selectedBaseboard: baseboard })
+              );
+            }
           });
         break;
       case 'walls':
@@ -143,15 +181,22 @@ export class SingleElementEditComponent implements OnInit, OnDestroy {
               GeneralChoiceActions.updateWallpaper({ selectedWallpaper: wallpaper })
             );
           });
-          this.form.controls['ceilingVariantId'].valueChanges
-          .pipe(
-            takeUntil(this.notifier$),
-            debounceTime(500)
-          )
+        this.form.controls['ceilingVariantId'].valueChanges
+          .pipe(takeUntil(this.notifier$), debounceTime(500))
           .subscribe((ceilingVariantId) => {
-            this.store.dispatch(
-              GeneralChoiceActions.updateCeilingVariant({ selectedCeilingVariant: ceilingVariantId })
-            );
+            if (this.forGeneralChoice) {
+              this.store.dispatch(
+                GeneralChoiceActions.updateCeilingVariant({
+                  selectedCeilingVariant: ceilingVariantId,
+                })
+              );
+            } else if (this.forSanitarGeneralChoice) {
+              this.store.dispatch(
+                GeneralChoiceSanitarActions.updateCeilingVariant({
+                  selectedCeilingVariant: ceilingVariantId,
+                })
+              );
+            }
           });
         break;
       case 'windowsills':

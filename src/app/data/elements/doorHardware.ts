@@ -14,6 +14,7 @@ export const doorHardware: RoomElement = {
             description: `Türgriff, Schild, Scharnierabdeckung. Fab. Cube. Chrom glänzend`,
             extraPrice: 0,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: [],
         },
         {
@@ -23,6 +24,7 @@ export const doorHardware: RoomElement = {
             description: `Türgriff, Schild, Scharnierabdeckung Fab. Cube. Schwarz matt/gebürstetes Chrom`,
             extraPrice: 0,
             forGeneralChoices: true,
+            forSanitarGeneralChoices: true,
             variants: [
                 {
                     id: '1',

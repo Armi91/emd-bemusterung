@@ -6,11 +6,24 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>BEMUSTERUNG</mat-toolbar>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span>BEMUSTERUNG</span>
+      </mat-toolbar-row>
+      <mat-toolbar-row class="justify-content-center">
+        <img
+        src="assets/images/logo-emd.png"
+        alt="EMD Projects"
+        class="header-logo" />
+      </mat-toolbar-row>
+    </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/c/rooms">Pomieszczenia</a>
-      <a mat-list-item routerLink="/c/general">Ogólne</a>
-      <a mat-list-item routerLink="">Sanitarne</a>
+      <a mat-list-item routerLink="/c/init" routerLinkActive="active-list-item">Nowy projekt</a>
+      <a mat-list-item routerLink="/c/rooms" routerLinkActive="active-list-item">Pomieszczenia</a>
+      <a mat-list-item routerLink="/c/general" routerLinkActive="active-list-item">Ogólne</a>
+      <a mat-list-item routerLink="/c/general-sanitar" routerLinkActive="active-list-item">Sanitarne</a>
+      <a mat-list-item (click)="openDialog()">Pliki</a>
+      <!-- <button mat-raised-button color="accent">Zatwierdź projekt</button> -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,10 +37,6 @@
       </button>
       <span style="flex: 1 1 auto"></span>
       <span>
-        <img
-          src="assets/images/logo-emd.png"
-          alt="EMD Projects"
-          class="header-logo" />
       </span>
       <span style="flex: 1 1 auto"></span>
       <ng-container *ngIf="user$ | async as user">
@@ -37,7 +46,7 @@
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Profil</button>
-          <button mat-menu-item>Wyloguj</button>
+          <button mat-menu-item (click)="authSrv.logout()">Wyloguj</button>
         </mat-menu>
       </ng-container>
     </mat-toolbar>

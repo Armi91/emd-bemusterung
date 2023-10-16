@@ -1,4 +1,5 @@
 <ng-container *ngIf="element">
+  <h3 class="mat-display-4 my-4">{{element.name}}</h3>
   <form *ngIf="form" [formGroup]="form" class="mt-4">
     <mat-radio-group formControlName="levelId">
       <div class="elements-grid">
@@ -52,33 +53,35 @@
     </mat-radio-group>
 
     <!-- Variants -->
-    <mat-radio-group formControlName="variantId" *ngIf="variants.length">
-      <h2 class="mat-headline-4 mt-4">Wybierz wariant</h2>
-      <div class="elements-grid" [id]="'variants-' + element.id">
-        <mat-card *ngFor="let variant of variants">
-          <mat-card-header>
-            <mat-card-title-group class="elements-grid__card-title-group">
-              <img
-                mat-card-lg-image
-                [src]="variant.image"
-                class="elements-grid__image" />
-            </mat-card-title-group>
-          </mat-card-header>
-          <mat-card-content class="elements-grid__card-content">
-            <p [innerHTML]="variant.description"></p>
-            <mat-radio-button [value]="variant.id"> Wybierz </mat-radio-button>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </mat-radio-group>
+    <ng-container *ngIf="variants.length">
+      <mat-radio-group formControlName="variantId">
+        <h2 class="mat-headline-4 mt-4">Wybierz wariant</h2>
+        <div class="elements-grid" [id]="'variants-' + element.id">
+          <mat-card *ngFor="let variant of variants">
+            <mat-card-header>
+              <mat-card-title-group class="elements-grid__card-title-group">
+                <img
+                  mat-card-lg-image
+                  [src]="variant.image"
+                  class="elements-grid__image" />
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content class="elements-grid__card-content">
+              <p [innerHTML]="variant.description"></p>
+              <mat-radio-button [value]="variant.id"> Wybierz </mat-radio-button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-radio-group>
+    </ng-container>
 
     <!-- Walls extras -->
     <ng-container *ngIf="element.id === 'walls'">
-      <h3 class="mat-headline-5 mt-3">Tapeta</h3>
+      <h3 class="mat-headline-5 mt-4">Tapeta</h3>
       <mat-checkbox formControlName="wallpaper"
-        >Chcę tapetę na ścianach</mat-checkbox
+        >Chcę tapetę na ścianach (Mehrpreis <span class="fw-bold">ca. €?? / pc.</span>)</mat-checkbox
       >
-      <h3 class="mat-headline-5 mt-3">Sufit</h3>
+      <h3 class="mat-headline-5 mt-4">Sufit</h3>
       <mat-radio-group formControlName="ceilingLevelId" #ceilingLevel>
         <mat-radio-button value="white">Biały</mat-radio-button>
         <mat-radio-button value="color">Kolor</mat-radio-button>
@@ -92,6 +95,13 @@
     </ng-container>
 
     <!-- Floor extras -->
-    <ng-container *ngIf="element.id === 'floor'"> </ng-container>
+    <ng-container *ngIf="element.id === 'floor'">
+      <h3 class="mat-headline-5 mt-4">Cokolik</h3>
+      <mat-radio-group formControlName="baseboard">
+        <mat-radio-button value="floorColor">Kolor podłogi</mat-radio-button>
+        <mat-radio-button value="white">Biały</mat-radio-button>
+        <mat-radio-button value="other">Inny</mat-radio-button>
+      </mat-radio-group>
+    </ng-container>
   </form>
 </ng-container>

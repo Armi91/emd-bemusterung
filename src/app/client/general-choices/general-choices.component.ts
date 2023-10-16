@@ -38,7 +38,6 @@ export class GeneralChoicesComponent implements OnInit, AfterViewInit {
         })
       )
       .subscribe((generalChoice) => {
-        console.log('generalChoice', generalChoice);
         if (generalChoice) {
           Object.keys(generalChoice).forEach((elementId: string) => {
             const elemId = <GeneralChoiceElementId>elementId;
@@ -59,38 +58,9 @@ export class GeneralChoicesComponent implements OnInit, AfterViewInit {
               const fcBaseboard = this.form.get(`${elementId}.baseboard`);
               fcBaseboard?.setValue(generalChoice[elemId].baseboard);
             }
-            
-            
-            
-            // elementForm.controls['levelId'].setValue(element['levelId']);
-            // this.form.controls[elementId].patchValue(element);
-            
-            // Object.keys(element).forEach((key) => {
-            //   this.form.controls[elementId].controls[key].setValue(element[key]);
-            //   element['levelId'] = element['levelId'];
-            // });
-            // this.form.controls[elementId];
           });
         }
       });
-    // this.store
-    //   .select(selectAllGeneralChoices)
-    //   .pipe(take(1))
-    //   .subscribe((generalChoices) => {
-    //     Object.keys(generalChoices).forEach((elementId: string) => {
-    //       const element = generalChoices[<GeneralChoiceElementId>elementId]
-    //       Object.keys(element).forEach((key) => {
-    //         this.form.controls[elementId].controls[key].setValue(element[key]);
-    //         element['levelId'] = element['levelId'];
-    //       });
-    //       this.form.controls[elementId]
-    //     })
-    //     console.log('generalChoices', generalChoices);
-    //     console.log('this.form', this.form);
-
-    //     this.form.patchValue(generalChoices);
-
-    //   });
   }
 
   onFormReady(data: { form: FormGroup<any>; elementId: string }, step: MatStep) {
