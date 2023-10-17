@@ -1,0 +1,38 @@
+<ng-container *ngIf="changesList$ | async as changesList">
+  <mat-table [dataSource]="changesList">
+    <ng-container matColumnDef="elementName">
+      <mat-header-cell *matHeaderCellDef> Element </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.elementName }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Opis </mat-header-cell>
+      <mat-cell *matCellDef="let element"><span [innerHTML]="element.description"></span></mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Akcje </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-mini-fab color="warn" class="me-3" (click)="deleteChange(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-mini-fab color="accent" (click)="editChange(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let element; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <!-- <mat-list>
+    <mat-list-item *ngFor="let change of changesList">
+      <button mat-fab color="danger">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-fab color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <p matListItemTitle>{{ change.elementName }}</p>
+      <p>{{ change.description }}</p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list> -->
+</ng-container>

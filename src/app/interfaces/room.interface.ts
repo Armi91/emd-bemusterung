@@ -4,6 +4,7 @@ export interface RoomData {
   area: number;
   roomType: string;
   roomNumber: string;
+  roomExtras?: RoomExtras
 }
 
 export interface RoomType {
@@ -14,5 +15,11 @@ export interface RoomType {
 }
 
 export interface RoomExtras {
-  
+  [id: string]: RoomExtra;
+}
+
+export interface RoomExtra {
+  id: string;
+  elementName: string;
+  description: string;
 }

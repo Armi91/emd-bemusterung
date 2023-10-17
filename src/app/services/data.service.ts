@@ -14,7 +14,7 @@ import { selectUserId, selectUserProjectId } from '../auth/auth.selector';
 import { ProjectState } from '../client/state/project/project.state';
 import { RoomState } from '../client/state/room/rooms.state';
 import { roomTypes } from '../data/roomTypes';
-import { RoomData } from '../interfaces/room.interface';
+import { RoomData, RoomExtra } from '../interfaces/room.interface';
 import { ProjectData } from '../interfaces/project.interface';
 import {
   generalChoiceElements,
@@ -41,15 +41,19 @@ import {
   sinkFaucet,
   toilet,
 } from '../data/sanitar';
-import { GeneralChoiceSanitarState, generalChoiceSanitarInitialState } from '../client/state/general-choice-sanitar/general-choice-sanitar.state';
+import {
+  GeneralChoiceSanitarState,
+  generalChoiceSanitarInitialState,
+} from '../client/state/general-choice-sanitar/general-choice-sanitar.state';
 import { FileData } from '../interfaces/file.interface';
 import { FilesState } from '../client/state/files/files.state';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private firestore: Firestore, private store: Store) {}
+  constructor(private firestore: Firestore, private store: Store, private toastr: ToastrService) {}
 
   get roomTypes$() {
     return of(roomTypes);
@@ -252,7 +256,6 @@ export class DataService {
 
   async addFile(file: FileData): Promise<any> {
     const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
-
     const projectRef = doc(this.firestore, `projects/${projectId}`);
     return updateDoc(projectRef, {
       [`files.${file.id}`]: file,
@@ -261,10 +264,37 @@ export class DataService {
 
   async updateFileDescription(fileId: string, description: string): Promise<any> {
     const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
-
     const projectRef = doc(this.firestore, `projects/${projectId}`);
     return updateDoc(projectRef, {
       [`files.${fileId}.description`]: description,
     });
+  }
+
+  async updateRoomExtras(roomId: string, extras: RoomExtra): Promise<any> {
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
+    const projectRef = doc(this.firestore, `projects/${projectId}`);
+
+    return updateDoc(projectRef, {
+      [`rooms.${roomId}.roomExtras.${extras.id}`]: extras,
+    }).catch((error) => {
+      console.error(error)
+      this.toastr.error('Nie udało się zapisać zmian', 'Błąd');
+    }).then(() => {
+      this.toastr.success('Zapisano zmiany');
+    })
+  }
+
+  async deleteRoomExtra(roomId: string, extraId: string) {
+    const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
+    const projectRef = doc(this.firestore, `projects/${projectId}`);
+
+    return updateDoc(projectRef, {
+      [`rooms.${roomId}.roomExtras.${extraId}`]: deleteField(),
+    }).catch((error) => {
+      console.error(error)
+      this.toastr.error('Nie udało się zapisać zmian', 'Błąd');
+    }).then(() => {
+      this.toastr.success('Usunięto zmianę');
+    })
   }
 }

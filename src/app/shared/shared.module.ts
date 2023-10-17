@@ -24,9 +24,10 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { FileSizePipe } from './file-size.pipe';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ChangesListComponent } from './changes-list/changes-list.component';
 
 @NgModule({
-  declarations: [NavbarComponent, FileUploadComponent, FileSizePipe],
+  declarations: [NavbarComponent, FileUploadComponent, FileSizePipe, ChangesListComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -79,6 +80,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     NgxMatFileInputModule,
     FileSizePipe,
     MatProgressBarModule,
+    ChangesListComponent,
   ],
 })
 export class SharedModule {}

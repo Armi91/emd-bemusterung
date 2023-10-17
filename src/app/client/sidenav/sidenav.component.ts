@@ -44,7 +44,7 @@ export class SidenavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, private store: Store, protected authSrv: AuthService, private dialog: MatDialog) {
     // TODO: Remove this
-    this.openDialog();
+    // this.openDialog();
   }
 
   openDialog() {

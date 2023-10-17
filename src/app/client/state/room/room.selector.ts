@@ -15,7 +15,15 @@ export const selectAllRooms = createSelector(roomFeature, (state) => {
   }
 });
 
-export const selectAllRoomsAsObject = createSelector(
-  roomFeature,
-  (state) => state
-);
+export const selectAllRoomsAsObject = createSelector(roomFeature, (state) => state);
+
+export const selectRoomExtras = (id: string) => {
+  return createSelector(roomFeature, (state) => {
+    const room = state[id];
+    if (room?.roomExtras) {
+      return Object.values(room.roomExtras);
+    } else {
+      return [];
+    }
+  });
+};

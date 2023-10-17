@@ -19,6 +19,7 @@ import { RoomEditComponent } from './room-edit/room-edit.component';
 import { GeneralChoiceSanitarEffects } from './state/general-choice-sanitar/general-choice-sanitar.effects';
 import { FilesDialogComponent } from './files-dialog/files-dialog.component';
 import { FilesEffects } from './state/files/files.effects';
+import { ElementsListComponent } from './room-edit/elements-list/elements-list.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FilesEffects } from './state/files/files.effects';
     SingleElementEditComponent,
     GeneralChoicesSanitarComponent,
     RoomEditComponent,
-    FilesDialogComponent
+    FilesDialogComponent,
+    ElementsListComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from "@ngrx/store";
-import { RoomData } from "src/app/interfaces/room.interface";
+import { RoomData, RoomExtra } from "src/app/interfaces/room.interface";
 import { RoomState } from "./rooms.state";
 
 export const RoomActions = createActionGroup({
@@ -20,5 +20,8 @@ export const RoomActions = createActionGroup({
         'Fetch Rooms': emptyProps(),
         'Fetch Rooms Successful': props<{rooms: RoomState}>(),
         'Fetch Rooms Failed': props<{error: any}>(),
+        // 'Update Room Extras': props<{roomId: string, extra: RoomExtra}>(),
+        // 'Update Room Extras Successful': emptyProps(),
+
     }
 })

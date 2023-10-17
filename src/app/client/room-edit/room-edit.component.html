@@ -1,14 +1,43 @@
 <ng-container *ngIf="room">
   <h3>{{ room.name }} [{{ room.roomNumber }}]</h3>
   <p>Powierzchnia: {{ room.area }} m<sup>2</sup></p>
-  <mat-form-field style="width: 100%">
+  <mat-divider></mat-divider>
+  <div class="py-3">
+    <h4>Lista zmian w pomieszczeniu</h4>
+    <app-changes-list [roomId]="room.id" (editRequested)="onEditRequested($event)"></app-changes-list>
+  </div>
+  <mat-form-field class="full-width">
     <mat-label>Co chcesz edytować?</mat-label>
-    <mat-select #el>
+    <mat-select #el (valueChange)="onSelectionChange($event)" [value]="currentSelection$.value">
       <mat-option *ngFor="let element of elementsToChange" [value]="element.id">
         {{ element.name }}
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <button mat-raised-button color="accent" (click)="addElementToChange(el)" [disabled]="!el.value">Dodaj zmianę</button>
-  <app-file-upload></app-file-upload>
+  <div class="py-3" *ngIf="currentSelection$.value">
+    <p>
+      Wpisz tutaj informacje o zmianach. Uwzględnij w nich nazwy materiałów, kolory itp.<br />
+      Poniżej znajdziesz dostępne materiały<br />
+      W menu po lewej stronie, w zakładce pliki możesz dodać plik, który pomoże w opisie zmian. (np.
+      rzut pomieszczenia z zaznaczonymi dodatkowymi gniazdkami)<br><br>
+      <span class="fw-bold">Przykład opisu</span><br />
+      <span [innerHTML]="exampleText"></span>
+    </p>
+    <form class="pb-3">
+      <ng-container>
+        <mat-form-field class="full-width" *ngIf="currentSelection$.value">
+          <mat-label>Informacje</mat-label>
+          <textarea matInput rows="7" [formControl]="changesForm"></textarea>
+        </mat-form-field>
+      </ng-container>
+    </form>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="addElementToChange(el)"
+      [disabled]="!currentSelection$.value">
+      Dodaj zmianę
+    </button>
+  </div>
 </ng-container>
+<app-elements-list [roomType$]="currentSelection$"></app-elements-list>

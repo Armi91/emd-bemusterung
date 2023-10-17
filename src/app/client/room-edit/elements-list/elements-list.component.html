@@ -1,0 +1,72 @@
+<ng-container *ngIf="roomElement$ | async as roomElement">
+  <ng-container *ngFor="let level of roomElement.levels">
+    <h4 class="fw-bold mb-4">{{ level.title }}</h4>
+
+    <ng-container *ngIf="level.variants.length <= 1">
+      <div class="elements-grid">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title-group class="elements-grid__card-title-group">
+              <img mat-card-lg-image [src]="level.image" class="elements-grid__image" />
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content class="elements-grid__card-content">
+            <p [innerHTML]="level.description"></p>
+            <p class="align-self-end">
+              {{ level.level === "standard" ? "Standard" : "Merhpeis" }}
+              <span class="fw-bold" *ngIf="level.level === 'mehrprice'"
+                >ca. {{ level.extraPrice | currency }}</span
+              >
+              <span *ngIf="level.level === 'mehrprice'">
+                /
+                {{
+                  roomElement.priceFor === "meter"
+                    ? "m2"
+                    : roomElement.priceFor === "item"
+                    ? "pc."
+                    : ""
+                }}</span
+              >
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="level.variants.length > 1">
+      <p class="mb-4" *ngIf="level.description" [innerHTML]="level.description"></p>
+      <div class="elements-grid">
+        <mat-card *ngFor="let variant of level.variants">
+          <mat-card-header>
+            <mat-card-title-group class="elements-grid__card-title-group">
+              <img mat-card-lg-image [src]="variant.image" class="elements-grid__image" />
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content class="elements-grid__card-content">
+            <p [innerHTML]="variant.description"></p>
+            <p class="align-self-end">
+              {{ level.level === "standard" ? "Standard" : "Merhpeis" }}
+              <span class="fw-bold" *ngIf="level.level === 'mehrprice'"
+                >ca. {{ (variant.extraPrice ? variant.extraPrice : level.extraPrice) | currency }}</span
+              >
+              <span *ngIf="level.level === 'mehrprice'">
+                /
+                {{
+                  roomElement.priceFor === "meter"
+                    ? "m2"
+                    : roomElement.priceFor === "item"
+                    ? "pc."
+                    : ""
+                }}</span
+              >
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+    <mat-divider class="my-5"></mat-divider>
+  </ng-container>
+  <div class="elements-grid">
+
+  </div>
+</ng-container>
