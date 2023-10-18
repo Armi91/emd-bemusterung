@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
@@ -24,6 +25,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { FileSizePipe } from './file-size.pipe';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatBadgeModule } from '@angular/material/badge';
 import { ChangesListComponent } from './changes-list/changes-list.component';
 
 @NgModule({
@@ -52,6 +54,8 @@ import { ChangesListComponent } from './changes-list/changes-list.component';
     MatMenuModule,
     NgxMatFileInputModule,
     MatProgressBarModule,
+    MatBadgeModule,
+    MatTooltipModule,
   ],
   exports: [
     CommonModule,
@@ -81,6 +85,8 @@ import { ChangesListComponent } from './changes-list/changes-list.component';
     FileSizePipe,
     MatProgressBarModule,
     ChangesListComponent,
+    MatBadgeModule,
+    MatTooltipModule,
   ],
 })
 export class SharedModule {}

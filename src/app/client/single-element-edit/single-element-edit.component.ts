@@ -100,6 +100,15 @@ export class SingleElementEditComponent implements OnInit, OnDestroy {
             this.form.updateValueAndValidity();
           }
         }
+        if (levelId === 'parkett_2') {
+          this.form.controls['parquetDirection'].addValidators(Validators.required);
+          this.form.updateValueAndValidity();
+        } else {
+          this.form.controls['parquetDirection'].setValue('');
+          this.form.controls['parquetDirection'].removeValidators(Validators.required);
+          this.form.controls['parquetDirection'].setErrors(null);
+          this.form.updateValueAndValidity();
+        }
       });
   }
 

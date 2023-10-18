@@ -25,7 +25,11 @@
               <input type="text" matInput formControlName="variantId" />
             </mat-form-field>
             <p class="align-self-end">
-              {{ level.level === "standard" ? "Standard" : "Merhpeis" }}
+              <span *ngIf="level.level === 'standard'">Standard</span>
+              <span *ngIf="level.level === 'mehrprice'">
+                <span>Mehrpreis</span>
+                <mat-icon *ngIf="level.id === 'parkett_2'" matTooltip="Sprawdź w opisie projektu czy jest standard czy mehrpeis" class="mx-2">info</mat-icon>
+              </span>
               <span class="fw-bold" *ngIf="level.level === 'mehrprice'"
                 >ca. {{ level.extraPrice | currency }}</span
               >
@@ -69,6 +73,20 @@
             <mat-card-content class="elements-grid__card-content">
               <p [innerHTML]="variant.description"></p>
               <mat-radio-button [value]="variant.id"> Wybierz </mat-radio-button>
+              <p class="align-self-end" *ngIf="variant.extraPrice">
+                <span>Mehrpreis </span>
+                <span class="fw-bold">ca. {{ variant.extraPrice | currency }}</span>
+                <span>
+                  /
+                  {{
+                    element.priceFor === "meter"
+                      ? "m2"
+                      : element.priceFor === "item"
+                      ? "pc."
+                      : ""
+                  }}</span
+                >
+              </p>
             </mat-card-content>
           </mat-card>
         </div>
@@ -96,6 +114,13 @@
 
     <!-- Floor extras -->
     <ng-container *ngIf="element.id === 'floor'">
+      <ng-container *ngIf="form.get('levelId')?.value === 'parkett_2'">
+        <h3 class="mat-headline-5 mt-4">Ułożenie parkietu (względem drzwi wejściowych)</h3>
+        <mat-radio-group formControlName="parquetDirection">
+          <mat-radio-button value="parallel">Równolegle</mat-radio-button>
+          <mat-radio-button value="perpendicular">Prostopadle</mat-radio-button>
+        </mat-radio-group>  
+      </ng-container>
       <h3 class="mat-headline-5 mt-4">Cokolik</h3>
       <mat-radio-group formControlName="baseboard">
         <mat-radio-button value="floorColor">Kolor podłogi</mat-radio-button>

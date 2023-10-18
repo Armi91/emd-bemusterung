@@ -12,8 +12,12 @@
             [(ngModel)]="loginForm.password"
             #password="ngModel">
     </div>
+    <div class="text-center d-flex justify-content-between mt-3">
+        <p><a routerLink="../password-reset">Przypomnij hasło</a></p>
+    </div>
     <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" [disabled]="loading$ | async">Zaloguj się</button>
     <div class="text-center d-flex justify-content-between mt-4">
         <p>Jeżeli nie masz konta <a routerLink="../register">Zarejestruj się</a></p>
     </div>
+    
 </form>

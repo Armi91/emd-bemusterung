@@ -8,13 +8,15 @@ import { AuthComponent } from './auth.component';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth.effects';
 import { SharedModule } from '../shared/shared.module';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    AuthComponent
+    AuthComponent,
+    PasswordResetComponent
   ],
   imports: [
     CommonModule,

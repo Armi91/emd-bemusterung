@@ -23,6 +23,7 @@ export class GeneralChoicesService {
           levelId: ['', Validators.required],
           variantId: [''],
           baseboard: ['', Validators.required],
+          parquetDirection: [''],
         });
         break;
       case 'walls':

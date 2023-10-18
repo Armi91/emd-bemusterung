@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { RoomElement } from 'src/app/interfaces/room-element.interface';
+import { BehaviorSubject, Observable, map } from 'rxjs';
+import { ElementLevel, RoomElement } from 'src/app/interfaces/room-element.interface';
 import { DataService } from 'src/app/services/data.service';
+import { GeneralChoicesService } from 'src/app/services/general-choices.service';
 
 @Component({
   selector: 'app-elements-list',
@@ -9,16 +10,47 @@ import { DataService } from 'src/app/services/data.service';
   styles: [],
 })
 export class ElementsListComponent {
-  @Input({ required: true }) roomType$!: BehaviorSubject<string>;
+  @Input({ required: true }) roomSelection$!: BehaviorSubject<string>;
+  @Input({ required: true }) roomType!: string;
 
   roomElement$: Observable<RoomElement | null> | undefined;
 
-  constructor(private dataSrv: DataService) {}
+  constructor(private dataSrv: DataService, private gcSrv: GeneralChoicesService) {}
 
   ngOnInit(): void {
-    this.roomType$.subscribe((roomType) => {
-      if (roomType) {
-        this.roomElement$ = this.dataSrv.getElement(roomType);
+    this.roomSelection$.subscribe((roomSelection) => {
+      if (roomSelection) {
+        console.log(roomSelection);
+        
+        this.roomElement$ = this.gcSrv.getElement(roomSelection).pipe(
+          map((room) => {
+            const r: RoomElement | null = {...room} as RoomElement;
+            if (this.roomType === 'general') {
+              if (roomSelection === 'floor' || roomSelection === 'walls') {
+                let tiles: ElementLevel;
+                if (roomSelection === 'floor') {
+                  const ind = room?.levels.findIndex((l) => l.id === 'fliesen_3')!
+                  tiles = {...room?.levels[ind]!};
+                  tiles.level = 'mehrprice';
+                  tiles.extraPrice = 20;
+                  r!.levels![ind] = tiles;
+                } 
+                // else { //roomSelection === 'walls'
+                //   const ind = room?.levels.findIndex((l) => l.id === 'tiles')!
+                //   tiles = {...room?.levels[ind]!};
+                //   tiles.level = 'mehrprice';
+                //   tiles.extraPrice = 20;
+                //   r!.levels![ind] = tiles;
+                // }
+                return r;
+              } else {
+                return r;
+              }
+            } else {
+              return r
+            }
+          })
+        )
       }
     });
   }

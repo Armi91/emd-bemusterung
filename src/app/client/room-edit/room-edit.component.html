@@ -34,10 +34,10 @@
     <button
       mat-raised-button
       color="accent"
-      (click)="addElementToChange(el)"
+      (click)="addElementToChange()"
       [disabled]="!currentSelection$.value">
       Dodaj zmianę
     </button>
   </div>
+  <app-elements-list [roomSelection$]="currentSelection$" [roomType]="room.roomType"></app-elements-list>
 </ng-container>
-<app-elements-list [roomType$]="currentSelection$"></app-elements-list>

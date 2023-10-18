@@ -26,6 +26,7 @@ export class RoomEditComponent {
   currentSelection$ = new BehaviorSubject('');
   extraChnges: RoomExtra[] = [];
   exampleText = '';
+  editId: string | false = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,6 +38,8 @@ export class RoomEditComponent {
       .pipe(switchMap((params) => this.store.select(selectRoom(params['roomId']))))
       .subscribe((room: RoomData) => {
         if (room) {
+          console.log(room);
+          
           this.room = room;
           this.elementsToChange = this.getElementsToChange(room.roomType);
           if (room.roomExtras) {
@@ -48,9 +51,9 @@ export class RoomEditComponent {
         }
       });
 
-      this.changesForm.valueChanges.subscribe((value) => {
-        console.log(value.replace(/\n/g, '<br>'));
-      })
+    this.changesForm.valueChanges.subscribe((value) => {
+      console.log(value.replace(/\n/g, '<br>'));
+    });
   }
 
   getElementsToChange(roomType: string) {
@@ -84,18 +87,19 @@ export class RoomEditComponent {
     this.currentSelection$.next(event);
     this.changesForm.setValue('');
     this.exampleText = hints[event] || '';
+    this.editId = false;
   }
 
-  addElementToChange(el: MatSelect) {
+  addElementToChange() {
     if (this.room?.id) {
       const id = autoId();
       const element = {
-        id,
+        id: this.editId || id,
         elementName: this.currentSelection$.getValue(),
-        description: this.changesForm.value.replace(/\n/g, '<br>')
+        description: this.changesForm.value.replace(/\n/g, '<br>'),
       };
       this.dataSrv.updateRoomExtras(this.room.id, element).then(() => {
-        el.value = '';
+        // el.value = '';
         this.changesForm.setValue('');
         this.currentSelection$.next('');
       });
@@ -105,5 +109,6 @@ export class RoomEditComponent {
   onEditRequested(element: RoomExtra) {
     this.currentSelection$.next(element.elementName);
     this.changesForm.setValue(element.description.replace(/<br>/g, '\n'));
+    this.editId = element.id;
   }
 }
