@@ -1,5 +1,7 @@
 import { RoomElement } from 'src/app/interfaces/room-element.interface';
 
+// Add code property to all missing elements
+
 export const floor: RoomElement = {
   id: 'floor',
   name: 'Bodenbelaege',
@@ -19,21 +21,21 @@ export const floor: RoomElement = {
       variants: [
         {
           id: '1',
-          image:
-            'assets/images/items/floor/Bodenbelaege_Vinylboden_2_1_1_1.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Vinylboden_2_1_1_1.jpg',
           description: ``,
+          code: '2',
         },
         {
           id: '2',
-          image:
-            'assets/images/items/floor/Bodenbelaege_Vinylboden_2_1_1_2.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Vinylboden_2_1_1_2.jpg',
           description: ``,
+          code: '3',
         },
         {
           id: '3',
-          image:
-            'assets/images/items/floor/Bodenbelaege_Vinylboden_2_1_1_3.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Vinylboden_2_1_1_3.jpg',
           description: ``,
+          code: '4',
         },
       ],
     },
@@ -43,7 +45,7 @@ export const floor: RoomElement = {
       level: 'mehrprice',
       image: 'assets/images/items/floor/Bodenbelaege_Parkett_2_2_2_2.jpg',
       description: '',
-      extraPrice: 0,
+      extraPrice: 35,
       forGeneralChoices: true,
       variants: [
         {
@@ -51,24 +53,28 @@ export const floor: RoomElement = {
           extraPrice: 35,
           image: 'assets/images/items/floor/Bodenbelaege_Parkett_2_2_2_1.JPG',
           description: `Parkett Eiche rustikal, natur, geölt, als Schichtparkett, Dielenbreite ca. 150 mm / Dielenstärke 14 mminkl. Sockelleiste weiß aus MDF`,
+          code: '5',
         },
         {
           id: '2',
           extraPrice: 50,
           image: 'assets/images/items/floor/Bodenbelaege_Parkett_2_2_2_2.jpg',
           description: `Parkett Eiche rustikal, hell, geölt, als Schichtparkett, Dielenbreite ca. 150 mm / Dielenstärke 14 mminkl. Sockelleiste weiß aus MDF`,
+          code: '6',
         },
         {
           id: '3',
           extraPrice: 50,
           image: 'assets/images/items/floor/Bodenbelaege_Parkett_2_2_3_1.jpg',
           description: `Parkett nach Individualplanung Bemusterung und Festlegung vor Ort`,
+          code: '7',
         },
         {
           id: '4',
           extraPrice: 10,
           image: 'assets/images/items/floor/Bodenbelaege_Parkett_2_2_3_2.jpg',
           description: `Sockelleiste, Holzprofil passend zum Parkett, geölt`,
+          code: '8',
         },
       ],
     },
@@ -86,36 +92,43 @@ export const floor: RoomElement = {
           id: '1',
           description: `Romagna Anthrazit`,
           image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_1.jpg',
+          code: 'Romagna Anthrazit',
         },
         {
           id: '2',
           description: `Romagna Hellgrau`,
           image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_2.jpg',
+          code: 'Romagna Hellgrau',
         },
         {
           id: '3',
           description: `Romagna Grau`,
-          image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_3.jpg',
+          image: 'assets/images/items/floor/Bodenelaege_Fliesen_2_3_3.jpg',
+          code: 'Romagna Grau',
         },
         {
           id: '4',
           description: `Romagna Mittelgrau`,
           image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_4.jpg',
+          code: 'Romagna Mittelgrau',
         },
         {
           id: '5',
           description: `Umbrien Khaki`,
           image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_5.jpg',
+          code: 'Umbrien Khaki',
         },
         {
           id: '6',
           description: `Umbrien Silver`,
           image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_6.jpg',
+          code: 'Umbrien Silver',
         },
         {
           id: '7',
           description: `Umbrien Snow`,
           image: 'assets/images/items/floor/Bodenbelaege_Fliesen_2_3_7.jpg',
+          code: 'Umbrien Snow',
         },
       ],
     },
@@ -132,134 +145,134 @@ export const floor: RoomElement = {
         {
           id: '1',
           description: `Grey 2`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_1.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_1.jpg',
+          code: 'Grey 2',
         },
         {
           id: '2',
           description: `Grey 3`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_2.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_2.jpg',
+          code: 'Grey 3',
         },
         {
           id: '3',
           description: `Grey 4`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_3.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_3.jpg',
+          code: 'Grey 4',
         },
         {
           id: '4',
           description: `Grey 5`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_4.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_4.jpg',
+          code: 'Grey 5',
         },
         {
           id: '5',
           description: `Grey 6`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_5.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_5.jpg',
+          code: 'Grey 6',
         },
         {
           id: '6',
           description: `Grey 7`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_6.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_6.jpg',
+          code: 'Grey 7',
         },
         {
           id: '7',
           description: `Grey 8`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_7.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_7.jpg',
+          code: 'Grey 8',
         },
         {
           id: '8',
           description: `Signal White`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_8.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_8.jpg',
+          code: 'Signal White',
         },
         {
           id: '9',
           description: `Grey White`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_9.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_9.jpg',
+          code: 'Grey White',
         },
         {
           id: '10',
           description: `Light Grey`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_10.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_10.jpg',
+          code: 'Light Grey',
         },
         {
           id: '11',
           description: `Stone Grey`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_11.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_11.jpg',
+          code: 'Stone Grey',
         },
         {
           id: '12',
           description: `Iron Grey`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_12.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_12.jpg',
+          code: 'Iron Grey',
         },
         {
           id: '13',
           description: `Silk Grey`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_13.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_13.jpg',
+          code: 'Silk Grey',
         },
         {
           id: '14',
           description: `Pebble Grey`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_14.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_14.jpg',
+          code: 'Pebble Grey',
         },
         {
           id: '15',
           description: `Classic Beige`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_15.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_15.jpg',
+          code: 'Classic Beige',
         },
         {
           id: '16',
           description: `July go Beige`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_16.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_16.jpg',
+          code: 'July go Beige',
         },
         {
           id: '17',
           description: `Warm go Beige`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_17.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_17.jpg',
+          code: 'Warm go Beige',
         },
         {
           id: '18',
           description: `Taupe Beige`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_18.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_18.jpg',
+          code: 'Taupe Beige',
         },
         {
           id: '19',
           description: `Pastel Rose`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_19.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_19.jpg',
+          code: 'Pastel Rose',
         },
         {
           id: '20',
           description: `Blue Sky`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_20.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_20.jpg',
+          code: 'Blue Sky',
         },
         {
           id: '21',
           description: `Teatree`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_21.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_21.jpg',
+          code: 'Teatree',
         },
         {
           id: '22',
           description: `Cool Rose`,
-          image:
-            'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_22.jpg',
+          image: 'assets/images/items/floor/Bodenbelaege_Microcement_2_4_1_22.jpg',
+          code: 'Cool Rose',
         },
       ],
     },

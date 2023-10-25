@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { ElementLevel, RoomElement } from 'src/app/interfaces/room-element.interface';
-import { DataService } from 'src/app/services/data.service';
 import { GeneralChoicesService } from 'src/app/services/general-choices.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class ElementsListComponent {
 
   roomElement$: Observable<RoomElement | null> | undefined;
 
-  constructor(private dataSrv: DataService, private gcSrv: GeneralChoicesService) {}
+  constructor(private gcSrv: GeneralChoicesService) {}
 
   ngOnInit(): void {
     this.roomSelection$.subscribe((roomSelection) => {
@@ -34,14 +33,7 @@ export class ElementsListComponent {
                   tiles.level = 'mehrprice';
                   tiles.extraPrice = 20;
                   r!.levels![ind] = tiles;
-                } 
-                // else { //roomSelection === 'walls'
-                //   const ind = room?.levels.findIndex((l) => l.id === 'tiles')!
-                //   tiles = {...room?.levels[ind]!};
-                //   tiles.level = 'mehrprice';
-                //   tiles.extraPrice = 20;
-                //   r!.levels![ind] = tiles;
-                // }
+                }
                 return r;
               } else {
                 return r;

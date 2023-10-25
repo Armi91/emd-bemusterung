@@ -13,6 +13,8 @@
             </mat-card-title-group>
           </mat-card-header>
           <mat-card-content class="elements-grid__card-content">
+            <h5>{{ level.title }}</h5>
+            <p *ngIf="level.id === 'parkett_2'"><sup><mat-icon>info</mat-icon></sup>Sprawdź w opisie projektu czy jest standard czy mehrpeis</p>
             <p [innerHTML]="level.description"></p>
             <mat-form-field
               *ngIf="
@@ -24,13 +26,13 @@
               <mat-label>Kolor RAL</mat-label>
               <input type="text" matInput formControlName="variantId" />
             </mat-form-field>
-            <p class="align-self-end">
-              <span *ngIf="level.level === 'standard'">Standard</span>
+            <p class="align-self-start font-italic font-light">
+              <span *ngIf="level.level === 'standard' || level.id === 'parkett_2'">Standard €0</span> <span *ngIf="level.id === 'parkett_2'">&nbsp;/&nbsp;</span>
               <span *ngIf="level.level === 'mehrprice'">
-                <span>Mehrpreis</span>
-                <mat-icon *ngIf="level.id === 'parkett_2'" matTooltip="Sprawdź w opisie projektu czy jest standard czy mehrpeis" class="mx-2">info</mat-icon>
+                <span>Mehrpreis&nbsp;</span>
+                <!-- <mat-icon *ngIf="level.id === 'parkett_2'" matTooltip="Sprawdź w opisie projektu czy jest standard czy mehrpeis" class="mx-2">info</mat-icon> -->
               </span>
-              <span class="fw-bold" *ngIf="level.level === 'mehrprice'"
+              <span *ngIf="level.level === 'mehrprice'"
                 >ca. {{ level.extraPrice | currency }}</span
               >
               <span *ngIf="level.level === 'mehrprice'">

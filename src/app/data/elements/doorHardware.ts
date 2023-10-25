@@ -29,13 +29,15 @@ export const doorHardware: RoomElement = {
                 {
                     id: '1',
                     image: 'assets/images/items/doorHardware/Türbeschläge_5_2_2_1.png',
-                    description: ``
+                    description: ``,
+                    code: '1'
                 },
                 
                 {
                     id: '2',
                     image: 'assets/images/items/doorHardware/Türbeschläge_5_2_2_2.png',
-                    description: ``
+                    description: ``,
+                    code: '2'
                 }
             ]
         }

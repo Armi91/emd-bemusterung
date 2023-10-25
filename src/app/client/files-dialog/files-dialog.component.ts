@@ -31,7 +31,6 @@ export class FilesDialogComponent implements OnInit {
   constructor(private store: Store, private dataSrv: DataService) {}
 
   ngOnInit(): void {
-    this.store.dispatch(FilesActions.fetchFiles());
     this.store.select(selectAllFiles).subscribe((files) => {
       this.files = files;
       this.files.forEach((file) => {

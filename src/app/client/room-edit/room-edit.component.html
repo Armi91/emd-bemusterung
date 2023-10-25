@@ -15,6 +15,7 @@
     </mat-select>
   </mat-form-field>
   <div class="py-3" *ngIf="currentSelection$.value">
+    <app-general-choice-preview [currentSelection$]="currentSelection$" [roomType]="room.roomType"></app-general-choice-preview>
     <p>
       Wpisz tutaj informacje o zmianach. Uwzględnij w nich nazwy materiałów, kolory itp.<br />
       Poniżej znajdziesz dostępne materiały<br />

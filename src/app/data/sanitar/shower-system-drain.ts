@@ -18,11 +18,13 @@ export const showerSystemDrain: RoomElement = {
           id: '1',
           image: 'assets/images/sanitaer/sanitaer_duschsystem-ablauf_1_1.jpg',
           description: ``,
+          code: '',
         },
         {
           id: '2',
           image: 'assets/images/sanitaer/sanitaer_duschsystem-ablauf_1_2.jpg',
           description: ``,
+          code: '',
         },
       ],
     },

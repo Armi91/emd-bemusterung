@@ -27,9 +27,11 @@ import { FileSizePipe } from './file-size.pipe';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ChangesListComponent } from './changes-list/changes-list.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ProjectPreviewComponent } from './project-preview/project-preview.component';
 
 @NgModule({
-  declarations: [NavbarComponent, FileUploadComponent, FileSizePipe, ChangesListComponent],
+  declarations: [NavbarComponent, FileUploadComponent, FileSizePipe, ChangesListComponent, ProjectPreviewComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -56,6 +58,7 @@ import { ChangesListComponent } from './changes-list/changes-list.component';
     MatProgressBarModule,
     MatBadgeModule,
     MatTooltipModule,
+    MatTabsModule,
   ],
   exports: [
     CommonModule,
@@ -87,6 +90,7 @@ import { ChangesListComponent } from './changes-list/changes-list.component';
     ChangesListComponent,
     MatBadgeModule,
     MatTooltipModule,
+    MatTabsModule,
   ],
 })
 export class SharedModule {}

@@ -59,3 +59,6 @@ export const generalChoiceInitialState: GeneralChoiceState = {
         variantId: '',
     }
 }
+
+// create keys type from initialState
+export type GeneralChoiceKeys = keyof typeof generalChoiceInitialState;

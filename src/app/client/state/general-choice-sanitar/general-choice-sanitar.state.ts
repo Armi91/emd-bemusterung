@@ -83,3 +83,5 @@ export const generalChoiceSanitarInitialState: GeneralChoiceSanitarState = {
     variantId: '',
   },
 }
+
+export type GeneralChoiceSanitarKeys = keyof typeof generalChoiceSanitarInitialState;

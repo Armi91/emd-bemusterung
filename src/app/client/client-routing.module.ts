@@ -7,6 +7,7 @@ import { GeneralChoicesComponent } from './general-choices/general-choices.compo
 import { RoomsSelectComponent } from './rooms/rooms-select/rooms-select.component';
 import { GeneralChoicesSanitarComponent } from './general-choices/general-choices-sanitar/general-choices-sanitar.component';
 import { RoomEditComponent } from './room-edit/room-edit.component';
+import { ProjectPreviewComponent } from '../shared/project-preview/project-preview.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: 'room/:roomId/edit',
         component: RoomEditComponent
+      },
+      {
+        path: 'preview/:projectId',
+        component: ProjectPreviewComponent
       }
     ]
   }

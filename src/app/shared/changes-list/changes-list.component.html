@@ -11,10 +11,10 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef> Akcje </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-mini-fab color="warn" class="me-3" (click)="deleteChange(element.id)">
+        <button mat-mini-fab color="warn" (click)="deleteChange(element.id)">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-mini-fab color="accent" (click)="editChange(element)">
+        <button mat-mini-fab color="accent" class="me-3" (click)="editChange(element)">
           <mat-icon>edit</mat-icon>
         </button>
       </mat-cell>

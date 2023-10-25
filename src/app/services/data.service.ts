@@ -166,6 +166,7 @@ export class DataService {
     const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
     updateDoc(doc(this.firestore, `projects/${projectId}`), {
       rooms,
+      [`projectData.lastUpdated`]: Timestamp.now(),
     });
   }
 
@@ -173,6 +174,7 @@ export class DataService {
     const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
     return updateDoc(doc(this.firestore, `projects/${projectId}`), {
       [`rooms.${roomId}`]: deleteField(),
+      [`projectData.lastUpdated`]: Timestamp.now(),
     });
   }
 
@@ -182,6 +184,7 @@ export class DataService {
     const projectRef = doc(this.firestore, `projects/${projectId}`);
     return updateDoc(projectRef, {
       [`rooms.${room.id}`]: room,
+      [`projectData.lastUpdated`]: Timestamp.now(),
     });
   }
 
@@ -202,6 +205,7 @@ export class DataService {
     const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
     updateDoc(doc(this.firestore, `projects/${projectId}`), {
       generalChoice,
+      [`projectData.lastUpdated`]: Timestamp.now(),
     });
   }
 
@@ -233,6 +237,7 @@ export class DataService {
     const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
     updateDoc(doc(this.firestore, `projects/${projectId}`), {
       generalChoiceSanitar,
+      [`projectData.lastUpdated`]: Timestamp.now(),
     });
   }
 
@@ -251,6 +256,7 @@ export class DataService {
     const projectId = await firstValueFrom(this.store.select(selectUserProjectId));
     return updateDoc(doc(this.firestore, `projects/${projectId}`), {
       [`files.${id}`]: deleteField(),
+      [`projectData.lastUpdated`]: Timestamp.now(),
     });
   }
 
@@ -259,6 +265,7 @@ export class DataService {
     const projectRef = doc(this.firestore, `projects/${projectId}`);
     return updateDoc(projectRef, {
       [`files.${file.id}`]: file,
+      [`projectData.lastUpdated`]: Timestamp.now(),
     });
   }
 
@@ -267,6 +274,7 @@ export class DataService {
     const projectRef = doc(this.firestore, `projects/${projectId}`);
     return updateDoc(projectRef, {
       [`files.${fileId}.description`]: description,
+      [`projectData.lastUpdated`]: Timestamp.now(),
     });
   }
 
@@ -276,6 +284,7 @@ export class DataService {
 
     return updateDoc(projectRef, {
       [`rooms.${roomId}.roomExtras.${extras.id}`]: extras,
+      [`projectData.lastUpdated`]: Timestamp.now(),
     }).catch((error) => {
       console.error(error)
       this.toastr.error('Nie udało się zapisać zmian', 'Błąd');
@@ -290,6 +299,7 @@ export class DataService {
 
     return updateDoc(projectRef, {
       [`rooms.${roomId}.roomExtras.${extraId}`]: deleteField(),
+      [`projectData.lastUpdated`]: Timestamp.now(),
     }).catch((error) => {
       console.error(error)
       this.toastr.error('Nie udało się zapisać zmian', 'Błąd');

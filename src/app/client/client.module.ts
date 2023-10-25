@@ -20,6 +20,7 @@ import { GeneralChoiceSanitarEffects } from './state/general-choice-sanitar/gene
 import { FilesDialogComponent } from './files-dialog/files-dialog.component';
 import { FilesEffects } from './state/files/files.effects';
 import { ElementsListComponent } from './room-edit/elements-list/elements-list.component';
+import { GeneralChoicePreviewComponent } from './room-edit/general-choice-preview/general-choice-preview.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ElementsListComponent } from './room-edit/elements-list/elements-list.c
     GeneralChoicesSanitarComponent,
     RoomEditComponent,
     FilesDialogComponent,
-    ElementsListComponent
+    ElementsListComponent,
+    GeneralChoicePreviewComponent
   ],
   imports: [
     CommonModule,

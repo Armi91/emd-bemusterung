@@ -26,4 +26,5 @@ export interface LevelVariant {
     image?: string;
     description?: string;
     extraPrice?: number;
+    code: string;
 }

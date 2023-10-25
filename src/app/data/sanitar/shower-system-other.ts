@@ -36,11 +36,13 @@ export const showerSystemOther: RoomElement = {
           id: '1',
           image: 'assets/images/sanitaer/sanitaer_duschsystem-sonstiges_3_1.jpg',
           description: ``,
+          code: '',
         },
         {
           id: '2',
           image: 'assets/images/sanitaer/sanitaer_duschsystem-sonstiges_3_2.jpg',
           description: ``,
+          code: '',
         },
       ],
     },
