@@ -29,9 +29,11 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { ChangesListComponent } from './changes-list/changes-list.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ProjectPreviewComponent } from './project-preview/project-preview.component';
+import { LightgalleryModule } from 'lightgallery/angular';
+import { LightboxComponent } from './lightbox/lightbox.component';
 
 @NgModule({
-  declarations: [NavbarComponent, FileUploadComponent, FileSizePipe, ChangesListComponent, ProjectPreviewComponent],
+  declarations: [NavbarComponent, FileUploadComponent, FileSizePipe, ChangesListComponent, ProjectPreviewComponent, LightboxComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -59,6 +61,7 @@ import { ProjectPreviewComponent } from './project-preview/project-preview.compo
     MatBadgeModule,
     MatTooltipModule,
     MatTabsModule,
+    LightgalleryModule,
   ],
   exports: [
     CommonModule,
@@ -91,6 +94,8 @@ import { ProjectPreviewComponent } from './project-preview/project-preview.compo
     MatBadgeModule,
     MatTooltipModule,
     MatTabsModule,
+    LightboxComponent,
+    LightgalleryModule,
   ],
 })
 export class SharedModule {}

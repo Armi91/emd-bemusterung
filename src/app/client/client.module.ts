@@ -23,6 +23,7 @@ import { ElementsListComponent } from './room-edit/elements-list/elements-list.c
 import { GeneralChoicePreviewComponent } from './room-edit/general-choice-preview/general-choice-preview.component';
 
 
+
 @NgModule({
   declarations: [
     ClientComponent,
@@ -42,7 +43,7 @@ import { GeneralChoicePreviewComponent } from './room-edit/general-choice-previe
     CommonModule,
     ClientRoutingModule,
     SharedModule,
-    EffectsModule.forFeature([ProjectEffects, RoomEffects, GeneralChoiceEffects, GeneralChoiceSanitarEffects, FilesEffects])
+    EffectsModule.forFeature([ProjectEffects, RoomEffects, GeneralChoiceEffects, GeneralChoiceSanitarEffects, FilesEffects]),
   ]
 })
 export class ClientModule { }
