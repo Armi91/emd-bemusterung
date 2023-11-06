@@ -1,10 +1,90 @@
-<mat-tab-group>
-  <mat-tab label="Ogólne">
-    <div class="py-4">
-      
+<div class="project-preview" *ngIf="project">
+  <section class="project-data"></section>
+  <section class="general-choices">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="fw-bold">Wybory ogólne</h2>
+        </div>
+      </div>
     </div>
-  </mat-tab>
-  <mat-tab label="Sanitarne">
+    <ng-container *ngFor="let element of project.generalChoice">
+      <app-general-choice-single-element [element]="element"></app-general-choice-single-element>
+    </ng-container>
+  </section>
+  <section class="general-choices">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="fw-bold">Wybory ogólne sanitarne</h2>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngFor="let element of project.generalChoiceSanitar">
+      <app-general-choice-single-element [element]="element"></app-general-choice-single-element>
+    </ng-container>
+  </section>
+  <section class="rooms">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="fw-bold">Pomieszczenia</h2>
+        </div>
+        <ng-container *ngFor="let room of project.rooms">
+          <div class="col-12 preview-room">
+            <h3>
+              <span class="fw-semibold">{{ room.name }}</span> [{{ room.roomNumber }}] -
+              {{ room.area }}m<sup>2</sup>
+            </h3>
+            <ng-container *ngIf="room.roomExtras?.length > 0">
+              <h4 class="fw-medium">Dodatkowe zmiany</h4>
+              <table class="table">
+                <tbody>
+                  <tr *ngFor="let extra of room.roomExtras">
+                    <td class="preview-room__element-name">{{ extra.elementName | revealName }}</td>
+                    <td [innerHTML]="extra.description"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+            <mat-divider style="margin: 15px 0"></mat-divider>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+  <section class="files">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="fw-bold">Załączone pliki</h2>
+          <ng-container *ngIf="project.files">
+            <div class="col-12 preview-room">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td>Nazwa pliku</td>
+                    <td>Opis</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let file of project.files">
+                    <td class="preview-room__element-name">
+                      <a [href]="file.url" [download]="file.name">
+                        {{ file.name }}
+                        <mat-icon class="ms-2">download</mat-icon>
+                      </a>
+                    </td>
+                    <td [innerHTML]="file.description"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
-  </mat-tab>
-</mat-tab-group>
+<!-- TODO: Dołączyć do projectData informacje o adresie itp -->

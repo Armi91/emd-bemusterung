@@ -1,3 +1,15 @@
 <ng-container *ngIf="currentPreview$ | async as currentPreview">
-  <pre>{{ currentPreview | json }}</pre>
+  <h3>Domyślny wybór</h3>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ currentPreview[0].levelName }}</mat-card-title>
+        <mat-card-subtitle>Code: {{ currentPreview[0].code }}</mat-card-subtitle>
+        <img mat-card-xl-image [src]="currentPreview[0].image" >
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- {{longText}} -->
+    </mat-card-content>
+  </mat-card>
 </ng-container>

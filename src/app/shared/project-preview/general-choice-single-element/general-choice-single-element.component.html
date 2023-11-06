@@ -1,0 +1,38 @@
+<div class="preview-element">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h4>{{ element.elementName }}</h4>
+      </div>
+      <div class="col-2 preview-element__image">
+        <img [src]="element.image" alt="" />
+      </div>
+      <div class="col-10 preview-element__description">
+        <p class="fw-bold">{{ element.levelName }}</p>
+        <p *ngIf="element.description"><span [innerHTML]="element.description"></span></p>
+        <p><span class="fw-bold">Kod: </span> {{ element.code }}</p>
+        <p *ngIf="element.baseboard">
+          <span class="fw-bold">Listwa przypodłogowa: </span> {{ element.baseboard | revealName }}
+        </p>
+        <p *ngIf="element.parquetDirection">
+          <span class="fw-bold">Ułożenie parkietu: </span>{{ element.parquetDirection | revealName }}
+        </p>
+        <p *ngIf="element.ceiling">
+          <span class="fw-bold">Sufit: </span
+          >{{
+            element.ceiling === 'white'
+              ? (element.ceiling | revealName)
+              : 'RAL ' + element.ceilingRAL
+          }}
+        </p>
+        <p *ngIf="element.walpaper" class="fw-bold">Wybrano tapetę</p>
+        
+        <p *ngIf="element.extraPrice > 0">
+          <span class="fw-bold">Cena:</span> ca. {{ element.extraPrice | currency }}/
+          <span [innerHTML]="element.priceFor | revealName"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-divider></mat-divider>

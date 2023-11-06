@@ -12,9 +12,9 @@
           </mat-card-header>
           <mat-card-content class="elements-grid__card-content">
             <p [innerHTML]="level.description"></p>
-            <p class="align-self-start">
+            <p class="align-self-start font-italic font-light">
               {{ level.level === "standard" ? "Standard" : "Merhpeis" }}
-              <span class="fw-bold" *ngIf="level.level === 'mehrprice'"
+              <span *ngIf="level.level === 'mehrprice'"
                 >ca. {{ level.extraPrice | currency }}</span
               >
               <span *ngIf="level.level === 'mehrprice'">
@@ -45,9 +45,9 @@
           <mat-card-content class="elements-grid__card-content">
             <p [innerHTML]="variant.description"></p>
             <p style="color: red;">KOD: {{ variant.code }}</p>
-            <p class="align-self-start">
+            <p class="align-self-start font-italic font-light">
               {{ level.level === "standard" ? "Standard" : "Merhpeis" }}
-              <span class="fw-bold" *ngIf="level.level === 'mehrprice'"
+              <span *ngIf="level.level === 'mehrprice'"
                 >ca. {{ (variant.extraPrice ? variant.extraPrice : level.extraPrice) | currency }}</span
               >
               <span *ngIf="level.level === 'mehrprice'">

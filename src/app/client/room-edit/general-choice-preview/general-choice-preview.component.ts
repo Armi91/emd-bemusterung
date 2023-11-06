@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, Observable, combineLatest, concatMap, mergeMap, switchMap } from 'rxjs';
+import { selectUserProjectId } from 'src/app/auth/auth.selector';
 import { SelectedItemPreview } from 'src/app/interfaces/selected-item-preview.interface';
 import { PreviewService } from 'src/app/services/preview.service';
 
@@ -14,14 +16,14 @@ export class GeneralChoicePreviewComponent {
 
   currentPreview$: Observable<SelectedItemPreview[]> | undefined;
 
-  constructor(private previewSrv: PreviewService) {}
+  constructor(private previewSrv: PreviewService, private store: Store) {}
 
   ngOnInit(): void {
-    this.currentPreview$ = this.currentSelection$
-      .pipe(
-        switchMap((elementType) =>
-          this.previewSrv.createSelectedPreview('3XN0gt00Ktf2pm18jO6n', this.roomType, [elementType])
-        )
-      )
+    this.currentPreview$ = combineLatest([this.currentSelection$, this.store.select(selectUserProjectId)]).pipe(
+      switchMap(([elementType, projectId]) => {
+        console.log(elementType, projectId);
+        return this.previewSrv.createSelectedPreview(projectId!, this.roomType, [elementType!])
+      })
+    )
   }
 }

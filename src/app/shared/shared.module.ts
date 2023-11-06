@@ -31,9 +31,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ProjectPreviewComponent } from './project-preview/project-preview.component';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { LightboxComponent } from './lightbox/lightbox.component';
+import { GeneralChoiceSingleElementComponent } from './project-preview/general-choice-single-element/general-choice-single-element.component';
+import { RevealNamePipe } from './reveal-name.pipe';
 
 @NgModule({
-  declarations: [NavbarComponent, FileUploadComponent, FileSizePipe, ChangesListComponent, ProjectPreviewComponent, LightboxComponent],
+  declarations: [NavbarComponent, FileUploadComponent, FileSizePipe, ChangesListComponent, ProjectPreviewComponent, LightboxComponent, GeneralChoiceSingleElementComponent, RevealNamePipe],
   imports: [
     CommonModule,
     FormsModule,

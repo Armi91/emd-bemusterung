@@ -12,6 +12,8 @@ import {
   GeneralChoiceSanitarKeys,
   GeneralChoiceSanitarState,
 } from '../client/state/general-choice-sanitar/general-choice-sanitar.state';
+import { RoomState } from '../client/state/room/rooms.state';
+import { RoomExtra, RoomExtras } from '../interfaces/room.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -34,32 +36,32 @@ export class PreviewService {
     );
   }
 
-  createGeneralChoicePreview(generalChoice: GeneralChoiceState) {
-    const keys = Object.keys(generalChoice) as GeneralChoiceKeys[];
-    const choices = [];
-    keys.forEach((key) => {
-      // let choice = {
-      //   selectedItem:
-      // };
-      switch (key) {
-        case 'floor':
-          break;
-        case 'walls':
-          break;
-        case 'windowsills':
-          break;
-        case 'doors':
-          break;
-        case 'doorHardware':
-          break;
-        case 'electricEquipment':
-          break;
-        default:
-          break;
-      }
-      console.log(key, generalChoice[key]);
-    });
-  }
+  // createGeneralChoicePreview(generalChoice: GeneralChoiceState) {
+  //   const keys = Object.keys(generalChoice) as GeneralChoiceKeys[];
+  //   const choices = [];
+  //   keys.forEach((key) => {
+  //     // let choice = {
+  //     //   selectedItem:
+  //     // };
+  //     switch (key) {
+  //       case 'floor':
+  //         break;
+  //       case 'walls':
+  //         break;
+  //       case 'windowsills':
+  //         break;
+  //       case 'doors':
+  //         break;
+  //       case 'doorHardware':
+  //         break;
+  //       case 'electricEquipment':
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //     console.log(key, generalChoice[key]);
+  //   });
+  // }
 
   createSelectedSingleItemPreview(elementType: string, selectedItem: any) {
     return this.dataSrv.getElement(elementType).pipe(
@@ -74,7 +76,23 @@ export class PreviewService {
           extraPrice: selectedVariant?.extraPrice || selectedLevel?.extraPrice || 0,
           image: selectedVariant?.image || selectedLevel?.image || '',
           code: selectedVariant?.code || '',
+          description: selectedVariant?.description || selectedLevel?.description || '',
         };
+        if (selectedItem?.baseboard) {
+          selectedItemPreview.baseboard = selectedItem.baseboard;
+        }
+        if (selectedItem?.parquetDirection) {
+          selectedItemPreview.parquetDirection = selectedItem.parquetDirection;
+        }
+        if (selectedItem?.ceilingLevelId) {
+          selectedItemPreview.ceiling = selectedItem.ceilingLevelId;
+        }
+        if (selectedItem?.ceilingVariantId) {
+          selectedItemPreview.ceilingRAL = selectedItem.ceilingVariantId;
+        }
+        if (selectedItem?.walpapper) {
+          selectedItemPreview.walpaper = selectedItem.walpaper;
+        }
         return selectedItemPreview;
       })
     );
@@ -118,5 +136,41 @@ export class PreviewService {
       }),
       switchMap((selectedItemPreviews) => forkJoin(selectedItemPreviews))
     );
+  }
+
+  createGeneralChoicePreview(gc: GeneralChoiceState | GeneralChoiceSanitarState, roomType: string) {
+    if (roomType === 'bathroom') {
+      const generalChoices = gc as GeneralChoiceSanitarState;
+      return Object.keys(generalChoices).map((elementType) => {
+        return this.createSelectedSingleItemPreview(
+          elementType,
+          generalChoices[elementType as GeneralChoiceSanitarKeys]
+        )
+      })
+    } else {
+      const generalChoices = gc as GeneralChoiceState;
+      return Object.keys(generalChoices).map((elementType) => {
+        return this.createSelectedSingleItemPreview(
+          elementType,
+          generalChoices[elementType as GeneralChoiceKeys]
+        )
+      })
+    }
+  }
+
+  parseRooms(rooms: RoomState) {
+    return Object.keys(rooms).map((key) => {
+      return {
+        area: rooms[key].area,
+        name: rooms[key].name,
+        roomNumber: rooms[key].roomNumber,
+        roomType: rooms[key].roomType === 'bathroom' ? 'Pomieszczenie sanitarne' : 'Pomieszczenie suche',
+        roomExtras: rooms[key].roomExtras ? this.parseRoomExtras(rooms[key].roomExtras!) : [],
+      };
+    });
+  }
+
+  parseRoomExtras(roomExtras: RoomExtras) {
+    return Object.values(roomExtras) || [];
   }
 }

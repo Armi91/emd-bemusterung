@@ -116,3 +116,43 @@ fa-icon {
 .active-list-item {
     background-color: rgba(0, 0, 0, 0.4) !important;
 }
+
+.project-preview {
+    section {
+        // margin: 20px 0;
+        margin: 10px 0;
+    }
+    @media print {
+        img {
+            max-width: 4cm;
+        }
+    }
+}
+
+.preview-element {
+    position: relative;
+    // margin: 30px 0;
+    margin: 15px 0;
+    padding: 10px 0;
+    // padding: 20px 0;
+    img {
+        max-width: 100%;
+        max-height: 200px;
+    }
+    p {
+        margin-bottom: 0.6rem;
+    }
+}
+
+.preview-room {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    &__element-name {
+        width: 205px;
+        font-weight: 500;
+    }
+    a {
+        line-height: 24px;
+        height: 24px;
+    }
+}
