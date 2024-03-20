@@ -12,10 +12,10 @@
         <p *ngIf="element.description"><span [innerHTML]="element.description"></span></p>
         <p><span class="fw-bold">Kod: </span> {{ element.code }}</p>
         <p *ngIf="element.baseboard">
-          <span class="fw-bold">Listwa przypodłogowa: </span> {{ element.baseboard | revealName }}
+          <span class="fw-bold">Sockel: </span> {{ element.baseboard | revealName }}
         </p>
         <p *ngIf="element.parquetDirection">
-          <span class="fw-bold">Ułożenie parkietu: </span>{{ element.parquetDirection | revealName }}
+          <span class="fw-bold">Parkettverlegung: </span>{{ element.parquetDirection | revealName }}
         </p>
         <p *ngIf="element.ceiling">
           <span class="fw-bold">Sufit: </span
@@ -26,9 +26,9 @@
           }}
         </p>
         <p *ngIf="element.walpaper" class="fw-bold">Wybrano tapetę</p>
-        
+
         <p *ngIf="element.extraPrice > 0">
-          <span class="fw-bold">Cena:</span> ca. {{ element.extraPrice | currency }}/
+          <span class="fw-bold">Preis:</span> ca. {{ element.extraPrice | currency }}/
           <span [innerHTML]="element.priceFor | revealName"></span>
         </p>
       </div>

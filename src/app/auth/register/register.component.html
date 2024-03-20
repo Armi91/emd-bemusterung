@@ -1,49 +1,96 @@
-<h4 class="display-6">Rejestracja</h4>
+<h4 class="display-6">Konto erstellen</h4>
 <form #form="ngForm" (ngSubmit)="sendForm($event, form)">
-    <div class="form-group mb-3">
-        <input id="firstname" name="firstname" type="text" 
-            placeholder="Imię" autofocus class="form-control rounded-pill border-0 shadow-sm px-4"
-            [(ngModel)]="registerForm.firstname" #firstname="ngModel"
-            required>
-    </div>
-    <div class="form-group mb-3">
-        <input id="lastname" name="lastname" type="text" 
-            placeholder="Nazwisko" autofocus class="form-control rounded-pill border-0 shadow-sm px-4"
-            [(ngModel)]="registerForm.lastname" #lastname="ngModel"
-            required>
-    </div>
-    <div class="form-group mb-3">
-        <input id="city" name="city" type="text" 
-            placeholder="Miejscowość" autofocus class="form-control rounded-pill border-0 shadow-sm px-4"
-            [(ngModel)]="registerForm.city" #city="ngModel"
-            required>
-    </div>
-    <div class="form-group mb-3">
-        <input id="street" name="street" type="text" 
-            placeholder="Ulica" autofocus class="form-control rounded-pill border-0 shadow-sm px-4"
-            [(ngModel)]="registerForm.street" #street="ngModel"
-            required>
-    </div>
-    <div class="form-group mb-3">
-        <input id="postalCode" name="postalCode" type="text" 
-            placeholder="Kod pocztowy" autofocus class="form-control rounded-pill border-0 shadow-sm px-4"
-            [(ngModel)]="registerForm.postalCode" #postalCode="ngModel"
-            required>
-    </div>
-    <div class="form-group mb-3">
-        <input id="email" name="email" type="email" 
-            placeholder="Adres email" class="form-control rounded-pill border-0 shadow-sm px-4"
-            [(ngModel)]="registerForm.email" #email="ngModel"
-            [email]="true" required>
-    </div>
-    <div class="form-group mb-3">
-        <input id="password" name="password" type="password" 
-            placeholder="Hasło (min. 6 znaków)" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
-            [(ngModel)]="registerForm.password" #password="ngModel"
-            required minlength="6">
-    </div>
-    <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" [disabled]="isLoading">Zarejestruj się</button>
-    <div class="text-center d-flex justify-content-between mt-4">
-    <p>Masz już konto? <a routerLink="../login">Zaloguj się</a></p>
-    </div>
+  <div class="form-group mb-3">
+    <input
+      id="firstname"
+      name="firstname"
+      type="text"
+      placeholder="Vorname"
+      autofocus
+      class="form-control rounded-pill border-0 shadow-sm px-4"
+      [(ngModel)]="registerForm.firstname"
+      #firstname="ngModel"
+      required />
+  </div>
+  <div class="form-group mb-3">
+    <input
+      id="lastname"
+      name="lastname"
+      type="text"
+      placeholder="Nachname"
+      autofocus
+      class="form-control rounded-pill border-0 shadow-sm px-4"
+      [(ngModel)]="registerForm.lastname"
+      #lastname="ngModel"
+      required />
+  </div>
+  <div class="form-group mb-3">
+    <input
+      id="city"
+      name="city"
+      type="text"
+      placeholder="Stadt"
+      autofocus
+      class="form-control rounded-pill border-0 shadow-sm px-4"
+      [(ngModel)]="registerForm.city"
+      #city="ngModel"
+      required />
+  </div>
+  <div class="form-group mb-3">
+    <input
+      id="street"
+      name="street"
+      type="text"
+      placeholder="Straße"
+      autofocus
+      class="form-control rounded-pill border-0 shadow-sm px-4"
+      [(ngModel)]="registerForm.street"
+      #street="ngModel"
+      required />
+  </div>
+  <div class="form-group mb-3">
+    <input
+      id="postalCode"
+      name="postalCode"
+      type="text"
+      placeholder="PLZ"
+      autofocus
+      class="form-control rounded-pill border-0 shadow-sm px-4"
+      [(ngModel)]="registerForm.postalCode"
+      #postalCode="ngModel"
+      required />
+  </div>
+  <div class="form-group mb-3">
+    <input
+      id="email"
+      name="email"
+      type="email"
+      placeholder="Email"
+      class="form-control rounded-pill border-0 shadow-sm px-4"
+      [(ngModel)]="registerForm.email"
+      #email="ngModel"
+      [email]="true"
+      required />
+  </div>
+  <div class="form-group mb-3">
+    <input
+      id="password"
+      name="password"
+      type="password"
+      placeholder="Passwort (min. 6 Zeichen)"
+      class="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
+      [(ngModel)]="registerForm.password"
+      #password="ngModel"
+      required
+      minlength="6" />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm"
+    [disabled]="isLoading">
+    Registrieren
+  </button>
+  <div class="text-center d-flex justify-content-between mt-4">
+    <p><a routerLink="../login">Anmelden</a></p>
+  </div>
 </form>

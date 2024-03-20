@@ -26,7 +26,7 @@ export class GeneralChoiceSanitarEffects {
       return this.actions$.pipe(
         ofType(GeneralChoiceSanitarActions.saveSanitarGeneralChoiceSuccessful),
         tap(() => {
-          this.toastr.success('Zapisano podstawowe wybory');
+          this.toastr.success('Die Standard-Auswahl wurde gespeichert');
         })
       );
     },
@@ -38,7 +38,7 @@ export class GeneralChoiceSanitarEffects {
       return this.actions$.pipe(
         ofType(GeneralChoiceSanitarActions.saveSanitarGeneralChoiceFailed),
         tap(() => {
-          this.toastr.error('Wystąpił problem z zapisaniem podstawowych wyborów');
+          this.toastr.error('Beim Speichern der Standard-Auswahl ist ein Fehler aufgetreten.');
         })
       );
     },

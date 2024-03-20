@@ -6,28 +6,24 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-password-reset',
   templateUrl: './password-reset.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class PasswordResetComponent {
-
   resetForm = {
-    email: ''
-  }
+    email: '',
+  };
 
-  constructor(
-    private toastr: ToastrService,
-    private auth: Auth
-  ) { }
+  constructor(private toastr: ToastrService, private auth: Auth) {}
 
   resetPassword(e: SubmitEvent, form: NgForm) {
     if (form.form.valid) {
-      sendPasswordResetEmail(this.auth, this.resetForm.email).then(() => {
-        this.toastr.success('Wysłano link resetujący hasło');
-      }
-      ).catch((err) => {
-        this.toastr.error(err.message, 'Błąd');
-      })
+      sendPasswordResetEmail(this.auth, this.resetForm.email)
+        .then(() => {
+          this.toastr.success('Link mit Passwort -Zurücksetzen wurde versendet.');
+        })
+        .catch((err) => {
+          this.toastr.error(err.message, 'Fehler');
+        });
     }
   }
 }

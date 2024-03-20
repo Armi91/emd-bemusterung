@@ -25,7 +25,7 @@ export class RoomEffects {
       return this.actions$.pipe(
         ofType(RoomActions.saveRoomSuccessful),
         tap(() => {
-          this.toastr.success('Dodano pokój');
+          this.toastr.success('Raum wurde hinzugefügt');
         })
       );
     },
@@ -37,7 +37,7 @@ export class RoomEffects {
       return this.actions$.pipe(
         ofType(RoomActions.saveRoomFailed),
         tap(() => {
-          this.toastr.error('Wystąpił problem z dodaniem pokoju');
+          this.toastr.error('Beim Hinzufügen eines Raumes ist ein Fehler aufgetreten.');
         })
       );
     },
@@ -71,7 +71,7 @@ export class RoomEffects {
       return this.actions$.pipe(
         ofType(RoomActions.deleteRoomSuccessful),
         tap(() => {
-          this.toastr.success('Usunięto pokój');
+          this.toastr.success('Raum wurde gelöscht');
         })
       );
     },
@@ -83,13 +83,12 @@ export class RoomEffects {
       return this.actions$.pipe(
         ofType(RoomActions.deleteRoomFailed),
         tap(() => {
-          this.toastr.error('Wystąpił problem z usunięciem pokoju');
+          this.toastr.error('Beim Löschen eines Raumes ist ein Fehler aufgetreten.');
         })
       );
     },
     { dispatch: false }
   );
-  
 
   constructor(
     private actions$: Actions,

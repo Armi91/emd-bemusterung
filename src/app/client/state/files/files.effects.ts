@@ -10,7 +10,6 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 
 @Injectable()
 export class FilesEffects {
-  
   $addFile = createEffect(() => {
     return this.actions$.pipe(
       ofType(FilesActions.addFile),
@@ -27,7 +26,7 @@ export class FilesEffects {
       return this.actions$.pipe(
         ofType(FilesActions.addFileSuccessful),
         tap(() => {
-          this.toastr.success('Dodano nowy plik');
+          this.toastr.success('Neue Datei hinzugefügt');
         })
       );
     },
@@ -39,7 +38,7 @@ export class FilesEffects {
       return this.actions$.pipe(
         ofType(FilesActions.addFileFailed),
         tap(() => {
-          this.toastr.error('Wystąpił problem z dodaniem pliku');
+          this.toastr.error('Fehler beim Hochladen der Datei');
         })
       );
     },
@@ -63,7 +62,7 @@ export class FilesEffects {
       return this.actions$.pipe(
         ofType(FilesActions.deleteFileSuccessful),
         tap(() => {
-          this.toastr.success('Usunięto plik');
+          this.toastr.success('Datei gelöscht');
         })
       );
     },
@@ -75,7 +74,7 @@ export class FilesEffects {
       return this.actions$.pipe(
         ofType(FilesActions.deleteFileFailed),
         tap(() => {
-          this.toastr.error('Wystąpił problem z usunięciem pliku');
+          this.toastr.error('Fehler beim Löschen der Datei');
         })
       );
     },
@@ -87,15 +86,13 @@ export class FilesEffects {
       ofType(FilesActions.fetchFiles),
       switchMap(() => {
         console.log('fetching files');
-        
+
         return this.dataSrv.fetchFiles();
       }),
       map((files) => FilesActions.fetchFilesSuccessful({ files })),
       catchError((error) => of(FilesActions.fetchFilesFailed({ error })))
     );
-  }
-  );
-  
+  });
 
   constructor(
     private actions$: Actions,

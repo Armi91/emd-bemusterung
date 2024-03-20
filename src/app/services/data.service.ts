@@ -285,12 +285,14 @@ export class DataService {
     return updateDoc(projectRef, {
       [`rooms.${roomId}.roomExtras.${extras.id}`]: extras,
       [`projectData.lastUpdated`]: Timestamp.now(),
-    }).catch((error) => {
-      console.error(error)
-      this.toastr.error('Nie udało się zapisać zmian', 'Błąd');
-    }).then(() => {
-      this.toastr.success('Zapisano zmiany');
     })
+      .catch((error) => {
+        console.error(error);
+        this.toastr.error('Die Änderungen konnten nicht gespeichert werden.', 'Fehler');
+      })
+      .then(() => {
+        this.toastr.success('Die Änderung wurden gespeichert');
+      });
   }
 
   async deleteRoomExtra(roomId: string, extraId: string) {
@@ -300,11 +302,13 @@ export class DataService {
     return updateDoc(projectRef, {
       [`rooms.${roomId}.roomExtras.${extraId}`]: deleteField(),
       [`projectData.lastUpdated`]: Timestamp.now(),
-    }).catch((error) => {
-      console.error(error)
-      this.toastr.error('Nie udało się zapisać zmian', 'Błąd');
-    }).then(() => {
-      this.toastr.success('Usunięto zmianę');
     })
+      .catch((error) => {
+        console.error(error);
+        this.toastr.error('Die Änderungen konnten nicht gespeichert werden.', 'Fehler');
+      })
+      .then(() => {
+        this.toastr.success('Die Änderung wurde gelöscht');
+      });
   }
 }

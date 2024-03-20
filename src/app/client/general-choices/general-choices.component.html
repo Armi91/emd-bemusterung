@@ -1,8 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-stepper color="accent">
-    <mat-step #stepRef
+    <mat-step
+      #stepRef
       *ngFor="let step of generalChoiceElements; let i = index"
-      errorMessage="Należy uzupełnić">
+      errorMessage="Angabe erforderlich">
       <ng-template matStepLabel>{{ step.name }}</ng-template>
       <app-single-element-edit
         *ngFor="let choice of step.choices"
@@ -11,5 +12,5 @@
         (formReady)="onFormReady($event, stepRef)"></app-single-element-edit>
     </mat-step>
   </mat-stepper>
-  <button mat-raised-button type="submit" color="accent">Zapisz</button>
+  <button mat-raised-button type="submit" color="accent">Speichern</button>
 </form>
