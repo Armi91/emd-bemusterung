@@ -1,13 +1,15 @@
 <ng-container *ngIf="room">
   <h3>{{ room.name }} [{{ room.roomNumber }}]</h3>
-  <p>Powierzchnia: {{ room.area }} m<sup>2</sup></p>
+  <p>Fläche: {{ room.area }} m<sup>2</sup></p>
   <mat-divider></mat-divider>
   <div class="py-3">
-    <h4>Lista zmian w pomieszczeniu</h4>
-    <app-changes-list [roomId]="room.id" (editRequested)="onEditRequested($event)"></app-changes-list>
+    <h4>Auflistung der Änderungen im Raum</h4>
+    <app-changes-list
+      [roomId]="room.id"
+      (editRequested)="onEditRequested($event)"></app-changes-list>
   </div>
   <mat-form-field class="full-width">
-    <mat-label>Co chcesz edytować?</mat-label>
+    <mat-label>Was möchten Sie bearbeiten?</mat-label>
     <mat-select #el (valueChange)="onSelectionChange($event)" [value]="currentSelection$.value">
       <mat-option *ngFor="let element of elementsToChange" [value]="element.id">
         {{ element.name }}
@@ -15,19 +17,22 @@
     </mat-select>
   </mat-form-field>
   <div class="py-3" *ngIf="currentSelection$.value">
-    <app-general-choice-preview [currentSelection$]="currentSelection$" [roomType]="room.roomType"></app-general-choice-preview>
+    <app-general-choice-preview
+      [currentSelection$]="currentSelection$"
+      [roomType]="room.roomType"></app-general-choice-preview>
     <p>
-      Wpisz tutaj informacje o zmianach. Uwzględnij w nich nazwy materiałów, kolory itp.<br />
-      Poniżej znajdziesz dostępne materiały<br />
-      W menu po lewej stronie, w zakładce pliki możesz dodać plik, który pomoże w opisie zmian. (np.
-      rzut pomieszczenia z zaznaczonymi dodatkowymi gniazdkami)<br><br>
-      <span class="fw-bold">Przykład opisu</span><br />
+      Schreiben Sie hier die Informationen über die gewünschte Änderung. Berücksichtige dabei die
+      Materialbezeichnung, Farben etc.<br />
+      Die verfügbaren Materialien finden Sie unten.<br />
+      Im Menu links können Sie eine Datei hochladen, die Ihnen hilft, die jeweilige Änderung zu
+      beschreiben.<br /><br />
+      <span class="fw-bold">Beispielhafte Beschreibung</span><br />
       <span [innerHTML]="exampleText"></span>
     </p>
     <form class="pb-3">
       <ng-container>
         <mat-form-field class="full-width" *ngIf="currentSelection$.value">
-          <mat-label>Informacje</mat-label>
+          <mat-label>Informationen</mat-label>
           <textarea matInput rows="7" [formControl]="changesForm"></textarea>
         </mat-form-field>
       </ng-container>
@@ -37,8 +42,10 @@
       color="accent"
       (click)="addElementToChange()"
       [disabled]="!currentSelection$.value">
-      Dodaj zmianę
+      weitere Änderung
     </button>
   </div>
-  <app-elements-list [roomSelection$]="currentSelection$" [roomType]="room.roomType"></app-elements-list>
+  <app-elements-list
+    [roomSelection$]="currentSelection$"
+    [roomType]="room.roomType"></app-elements-list>
 </ng-container>

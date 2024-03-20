@@ -1,14 +1,15 @@
 {
+  "projects": {
+    "default": "bemusterung-tatra-house"
+  },
   "targets": {
     "bemusterung-tatra-house": {
       "hosting": {
-        "bemusterung2": [
+        "bemusterung": [
           "bemusterung"
         ]
       }
     }
   },
-  "projects": {
-    "default": "bemusterung-tatra-house"
-  }
+  "etags": {}
 }

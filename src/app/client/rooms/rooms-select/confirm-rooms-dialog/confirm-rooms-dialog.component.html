@@ -1,15 +1,22 @@
-<h2>Czy dodałeś już wsztkie pokoje?</h2>
+<h2>Haben Sie alle Räume hinzugefügt?</h2>
 <mat-dialog-content class="mat-typography">
-    <h3>Masz dodane następujące pokoje:</h3>
-    <mat-list>
-        <mat-list-item *ngFor="let room of rooms$ | async">
-            <span matListItemTitle>{{ room.name }}</span>
-            <span matListItemLine>Typ: {{ room.roomType }}</span>
-            <span matListItemLine>Powierzchnia: {{ room.area }}</span>
-        </mat-list-item>
-    </mat-list>
+  <h3>Sie haben foldende Räume hinzugefügt:</h3>
+  <mat-list>
+    <mat-list-item *ngFor="let room of rooms$ | async">
+      <span matListItemTitle>{{ room.name }}</span>
+      <span matListItemLine>Raumtyp: {{ room.roomType }}</span>
+      <span matListItemLine>Fläche: {{ room.area }}</span>
+    </mat-list-item>
+  </mat-list>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Wróć</button>
-    <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial routerLink="/c/general">Zatwierdź</button>
+  <button mat-button mat-dialog-close>Zurück</button>
+  <button
+    mat-raised-button
+    color="primary"
+    mat-dialog-close
+    cdkFocusInitial
+    routerLink="/c/general">
+    Speichern
+  </button>
 </mat-dialog-actions>

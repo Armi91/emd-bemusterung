@@ -2,43 +2,41 @@
   <div class="row">
     <table mat-table [dataSource]="rooms$" class="mat-elevation-z8 mat-table">
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nazwa pomieszczenia</th>
+        <th mat-header-cell *matHeaderCellDef>Raumbezeichnung</th>
         <td mat-cell *matCellDef="let element">
-          {{
-            element.name
-          }}
+          {{ element.name }}
         </td>
       </ng-container>
       <ng-container matColumnDef="roomType">
-        <th mat-header-cell *matHeaderCellDef>Typ pomieszczenia</th>
+        <th mat-header-cell *matHeaderCellDef>Raumtyp</th>
         <td mat-cell *matCellDef="let element">
-          {{
-            getRoomTypeName(element.roomType)
-          }}
+          {{ getRoomTypeName(element.roomType) }}
         </td>
       </ng-container>
       <ng-container matColumnDef="roomNumber">
-        <th mat-header-cell *matHeaderCellDef>Numer z projektu</th>
+        <th mat-header-cell *matHeaderCellDef>Raumnummer</th>
         <td mat-cell *matCellDef="let element">
-          {{
-            element.roomNumber
-          }}
+          {{ element.roomNumber }}
         </td>
       </ng-container>
       <ng-container matColumnDef="area">
-        <th mat-header-cell *matHeaderCellDef>Powierzchnia</th>
+        <th mat-header-cell *matHeaderCellDef>Fläche</th>
         <td mat-cell *matCellDef="let element">
-          {{
-            element.area
-          }}
+          {{ element.area }}
           m<sup>2</sup>
         </td>
       </ng-container>
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Akcje</th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button mat-raised-button color="warn" (click)="deleteRoom(element.id)">Usuń</button>
-          <button mat-raised-button color="primary" [routerLink]="['/c/room', element.id, 'edit']" class="ms-3">Edytuj</button>
+          <button mat-raised-button color="warn" (click)="deleteRoom(element.id)">Löschen</button>
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/c/room', element.id, 'edit']"
+            class="ms-3">
+            Ändern
+          </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -49,12 +47,11 @@
 
 <form [formGroup]="newRoomForm" (ngSubmit)="addRoom()">
   <div class="full-width my-4 stretched-form">
-    
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-md-6 col-xl-3">
           <mat-form-field class="form-field me-2">
-            <mat-label>Typ pomieszczenia</mat-label>
+            <mat-label>Raumtyp</mat-label>
             <mat-select formControlName="roomType">
               <mat-option
                 *ngFor="let avaliableRoom of dataSrv.roomTypes$ | async"
@@ -66,39 +63,36 @@
         </div>
         <div class="col-12 col-md-6 col-xl-3">
           <mat-form-field class="form-field me-2">
-            <mat-label>Nazwa pomieszczenia</mat-label>
+            <mat-label>Raumbezeichnung</mat-label>
             <input type="text" matInput formControlName="name" />
-            <mat-hint>Nazwa pomieszczenia jak w projecie</mat-hint>
+            <mat-hint>Raumbezeichnung laut Grundriss</mat-hint>
           </mat-form-field>
         </div>
         <div class="col-12 col-md-6 col-xl-3">
           <mat-form-field class="form-field me-2">
-            <mat-label>Numer pomieszczenia</mat-label>
+            <mat-label>Raumnummer</mat-label>
             <input type="text" matInput formControlName="roomNumber" />
-            <mat-hint>Numer pomieszczenia jak w projecie</mat-hint>
+            <mat-hint>Raumnummer laut Grundriss</mat-hint>
           </mat-form-field>
         </div>
         <div class="col-12 col-md-6 col-xl-3">
           <mat-form-field class="form-field">
-            <mat-label>Powierzchnia</mat-label>
-            <input
-              type="number"
-              matInput
-              min="0"
-              step="0.01"
-              formControlName="area"
-            />
-            <mat-hint>Powierzchnia z projektu</mat-hint>
+            <mat-label>Fläche</mat-label>
+            <input type="number" matInput min="0" step="0.01" formControlName="area" />
+            <mat-hint>Fläche laut Grundriss</mat-hint>
           </mat-form-field>
         </div>
       </div>
     </div>
   </div>
-  <button mat-raised-button extended color="primary" class="full-width mb-2" [disabled]="newRoomForm.status === 'INVALID'">
+  <button
+    mat-raised-button
+    extended
+    color="primary"
+    class="full-width mb-2"
+    [disabled]="newRoomForm.status === 'INVALID'">
     <mat-icon>add_circle</mat-icon>
-    Dodaj pomieszczenie
+    Fügen Sie weiteren Raum hinzu
   </button>
 </form>
-<button mat-raised-button color="accent" class="full-width" (click)="openDialog()">
-  Przejdź dalej
-</button>
+<button mat-raised-button color="accent" class="full-width" (click)="openDialog()">Weiter</button>

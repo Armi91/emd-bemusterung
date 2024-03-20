@@ -8,10 +8,9 @@ import { ErrorTranslateService } from 'src/app/services/error-translate.service'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styles: []
+  styles: [],
 })
 export class RegisterComponent implements OnInit {
-
   isLoading = false;
   // @ViewChild('form', {static: false}) form: any;
 
@@ -22,7 +21,7 @@ export class RegisterComponent implements OnInit {
     password: '',
     city: '',
     street: '',
-    postalCode: ''
+    postalCode: '',
   };
 
   constructor(
@@ -30,10 +29,9 @@ export class RegisterComponent implements OnInit {
     private toastr: ToastrService,
     private errorTranslate: ErrorTranslateService,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   validateForm(form: NgForm): boolean {
     console.log(form);
@@ -41,7 +39,7 @@ export class RegisterComponent implements OnInit {
       return true;
     } else {
       form.form.markAllAsTouched();
-      this.toastr.error('Uzupełnij poprawnie wszystkie pola', 'Błąd w formularzu rejestracji');
+      this.toastr.error('Fülle alle Felder korrekt aus.', 'Fehler bei Login-Formular');
       return false;
     }
   }
@@ -52,13 +50,12 @@ export class RegisterComponent implements OnInit {
       this.authSrv.register(this.registerForm).then((err?) => {
         console.log(err);
         if (err) {
-          this.toastr.error(this.errorTranslate.getMessage(err.code), "Błąd rejestracji");
+          this.toastr.error(this.errorTranslate.getMessage(err.code), 'Felher bei Registrierung');
         } else {
           this.router.navigate(['/c/init']);
         }
         this.isLoading = false;
-      })
+      });
     }
   }
-
 }

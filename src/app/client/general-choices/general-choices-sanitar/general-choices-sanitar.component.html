@@ -1,17 +1,17 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-stepper color="accent" orientation="horizontal">
-      <mat-step #stepRef
-        *ngFor="let step of generalChoiceSanitarElements; let i = index"
-        errorMessage="Należy uzupełnić">
-        <ng-template matStepLabel>{{ step.name }}</ng-template>
-        <app-single-element-edit
-          *ngFor="let choice of step.choices"
-          [elementId]="choice.id"
-          [forGeneralChoice]="false"
-          [forSanitarGeneralChoice]="true"
-          (formReady)="onFormReady($event, stepRef)"></app-single-element-edit>
-      </mat-step>
-    </mat-stepper>
-    <button mat-raised-button type="submit" color="accent">Zapisz</button>
-  </form>
-  
+  <mat-stepper color="accent" orientation="horizontal">
+    <mat-step
+      #stepRef
+      *ngFor="let step of generalChoiceSanitarElements; let i = index"
+      errorMessage="Należy uzupełnić">
+      <ng-template matStepLabel>{{ step.name }}</ng-template>
+      <app-single-element-edit
+        *ngFor="let choice of step.choices"
+        [elementId]="choice.id"
+        [forGeneralChoice]="false"
+        [forSanitarGeneralChoice]="true"
+        (formReady)="onFormReady($event, stepRef)"></app-single-element-edit>
+    </mat-step>
+  </mat-stepper>
+  <button mat-raised-button type="submit" color="accent">Speichern</button>
+</form>

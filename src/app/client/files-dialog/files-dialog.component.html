@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Pliki</h1>
+<h1 mat-dialog-title>Dateien</h1>
 <div mat-dialog-content>
   <mat-list>
     <form [formGroup]="descriptions">
@@ -7,11 +7,11 @@
           <a href="{{ file.url }}" target="_blank">{{ file.name }}</a>
           <div>
             <mat-form-field>
-              <input matInput placeholder="Opis" [formControlName]="file.id">
+              <input matInput placeholder="Beschreibung" [formControlName]="file.id" />
             </mat-form-field>
             <button mat-raised-button class="ms-3" (click)="deleteFile(file.name, file.id)">
               <mat-icon>delete</mat-icon>
-              Usuń
+              Löschen
             </button>
           </div>
         </div>
@@ -21,6 +21,6 @@
   <app-file-upload></app-file-upload>
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Anuluj</button>
-  <button mat-button mat-dialog-close (click)="saveChanges()">Zapisz</button>
+  <button mat-button mat-dialog-close>Abbrechen</button>
+  <button mat-button mat-dialog-close (click)="saveChanges()">Speichern</button>
 </div>

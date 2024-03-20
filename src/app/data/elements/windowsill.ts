@@ -30,13 +30,13 @@ export const windowsills: RoomElement = {
           id: '1',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_2_1.jpg',
           description: ``,
-          code: ''
+          code: '1'
         },
         {
           id: '2',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_2_2.jpg',
           description: ``,
-          code: ''
+          code: '2'
         },
       ],
     },
@@ -53,25 +53,25 @@ export const windowsills: RoomElement = {
           id: '1',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_3_1.jpg',
           description: ``,
-          code: ''
+          code: '3'
         },
         {
           id: '2',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_3_2.jpg',
           description: ``,
-          code: ''
+          code: '4'
         },
         {
           id: '3',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_3_3.jpg',
           description: ``,
-          code: ''
+          code: '5'
         },
         {
           id: '4',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_3_4.jpg',
           description: ``,
-          code: ''
+          code: '6'
         },
       ],
     },
@@ -88,19 +88,19 @@ export const windowsills: RoomElement = {
           id: '1',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_4_1.png',
           description: ``,
-          code: ''
+          code: '7'
         },
         {
           id: '2',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_4_2.png',
           description: ``,
-          code: ''
+          code: '8'
         },
         {
           id: '3',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_4_3.png',
           description: ``,
-          code: ''
+          code: '9'
         },
       ],
     },
@@ -117,19 +117,19 @@ export const windowsills: RoomElement = {
           id: '1',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_5_1.jpg',
           description: ``,
-          code: ''
+          code: '10'
         },
         {
           id: '2',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_5_2.png',
           description: ``,
-          code: ''
+          code: '11'
         },
         {
           id: '3',
           image: 'assets/images/items/windowsill/Fensterbrett_5_5_5_3.jpg',
           description: ``,
-          code: ''
+          code: '12'
         },
       ],
     },

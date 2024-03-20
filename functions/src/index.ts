@@ -47,3 +47,30 @@ exports.pdf = onRequest(
     // });
   }
 );
+
+// import * as sgMail from '@sendgrid/mail';
+// import { config } from 'dotenv';
+// config();
+// console.log(process.env);
+
+// console.log('API KEY: ', { SENDGRID_API: process.env.SENDGRID_API });
+// // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+// sgMail.setApiKey(process.env.SENDGRID_API!);
+
+// const msg = {
+//   to: 'biuro@droitweb.pl',
+//   from: 'rejestracja@eventy.online',
+//   subject: 'Sending with Twilio SendGrid is Fun',
+//   text: 'and easy to do anywhere, even with Node.js',
+//   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+// };
+
+// sgMail
+//   .send(msg)
+//   .then((response) => {
+//     console.log(response[0].statusCode);
+//     console.log(response[0].headers);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });

@@ -7,19 +7,19 @@ export class RevealNamePipe implements PipeTransform {
   transform(shorthand: string, ...args: unknown[]): string {
     switch (shorthand) {
       case 'white':
-        return 'Biały';
+        return 'Weiß';
       case 'floorColor':
-        return 'Kolor podłogi';
+        return 'Bodenfarbe';
       case 'other':
-        return 'Inne';
+        return 'Andere';
       case 'item':
         return 'przedmiot';
       case 'meter':
         return 'm<sup>2</sup>';
       case 'parallel':
-        return 'Równolegle';
+        return 'Parallel';
       case 'perpendicular':
-        return 'Prostopadle';
+        return 'Orthogonal';
       case 'floor':
         return 'Bodenbelage';
       case 'walls':

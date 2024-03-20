@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ErrorTranslateService {
-
   errorCodes: any = {
-    'auth/email-already-in-use': 'Na ten adres email jest już założone konto w serwisie',
-    'auth/wrong-password': 'Hasło niepoprawne',
-    'auth/user-not-found': 'Nie znaleziono użytkownika o podanym adresie mailowym'
-  }
+    'auth/email-already-in-use': 'Diese Email wird bereits verwendet.',
+    'auth/wrong-password': 'Ungültiges Passwort',
+    'auth/user-not-found': 'Es wurde kein Nutzer mit dieser Emailadresse gefunden ',
+  };
 
-  constructor() { }
+  constructor() {}
 
   getMessage(code: string) {
     return this.errorCodes[code] || '';

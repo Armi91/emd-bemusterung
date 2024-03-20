@@ -1,6 +1,6 @@
 <div class="mt-4">
   <mat-form-field class="full-width">
-    <ngx-mat-file-input [formControl]="fileControl" placeholder="Wybierz plik">
+    <ngx-mat-file-input [formControl]="fileControl" placeholder="Wähle eine Datei aus">
       <!-- <mat-icon ngxMatFileInputIcon>folder</mat-icon> -->
     </ngx-mat-file-input>
   </mat-form-field>
@@ -9,7 +9,9 @@
   <p>{{ fileControl.value.name }} {{ fileControl.value.size | fileSize }}</p>
   <button mat-raised-button (click)="uploadFile()">Wgraj plik</button>
 </div>
-<div class="my-3 d-flex align-items-center" *ngIf="(fileUploadService.uploadProgress$ | async) as progress">
+<div
+  class="my-3 d-flex align-items-center"
+  *ngIf="fileUploadService.uploadProgress$ | async as progress">
   <mat-progress-bar [value]="progress"></mat-progress-bar>
   <p>{{ progress }}%</p>
 </div>

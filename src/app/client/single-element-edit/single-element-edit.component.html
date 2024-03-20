@@ -1,20 +1,20 @@
 <ng-container *ngIf="element">
-  <h3 class="mat-display-4 my-4">{{element.name}}</h3>
+  <h3 class="mat-display-4 my-4">{{ element.name }}</h3>
   <form *ngIf="form" [formGroup]="form" class="mt-4">
     <mat-radio-group formControlName="levelId">
       <div class="elements-grid">
         <mat-card *ngFor="let level of element.levels">
           <mat-card-header>
             <mat-card-title-group class="elements-grid__card-title-group">
-              <img
-                mat-card-lg-image
-                [src]="level.image"
-                class="elements-grid__image" />
+              <img mat-card-lg-image [src]="level.image" class="elements-grid__image" />
             </mat-card-title-group>
           </mat-card-header>
           <mat-card-content class="elements-grid__card-content">
             <h5>{{ level.title }}</h5>
-            <p *ngIf="level.id === 'parkett_2'"><sup><mat-icon>info</mat-icon></sup>Sprawdź w opisie projektu czy jest standard czy mehrpeis</p>
+            <p *ngIf="level.id === 'parkett_2'">
+              <sup><mat-icon>info</mat-icon></sup
+              >zu prüfen, ob als Standard oder Mehrpreis (siehe Baubeschreibung)
+            </p>
             <p [innerHTML]="level.description"></p>
             <mat-form-field
               *ngIf="
@@ -23,36 +23,34 @@
                 level.id === 'coloredPaint'
               "
               class="ml-3">
-              <mat-label>Kolor RAL</mat-label>
+              <mat-label>RAL-Farbe</mat-label>
               <input type="text" matInput formControlName="variantId" />
             </mat-form-field>
             <p class="align-self-start font-italic font-light">
-              <span *ngIf="level.level === 'standard' || level.id === 'parkett_2'">Standard €0</span> <span *ngIf="level.id === 'parkett_2'">&nbsp;/&nbsp;</span>
+              <span *ngIf="level.level === 'standard' || level.id === 'parkett_2'"
+                >Standard €0</span
+              >
+              <span *ngIf="level.id === 'parkett_2'">&nbsp;/&nbsp;</span>
               <span *ngIf="level.level === 'mehrprice'">
                 <span>Mehrpreis&nbsp;</span>
                 <!-- <mat-icon *ngIf="level.id === 'parkett_2'" matTooltip="Sprawdź w opisie projektu czy jest standard czy mehrpeis" class="mx-2">info</mat-icon> -->
               </span>
-              <span *ngIf="level.level === 'mehrprice'"
-                >ca. {{ level.extraPrice | currency }}</span
-              >
+              <span *ngIf="level.level === 'mehrprice'">ca. {{ level.extraPrice | currency }}</span>
               <span *ngIf="level.level === 'mehrprice'">
                 /
                 {{
-                  element.priceFor === "meter"
-                    ? "m2"
-                    : element.priceFor === "item"
-                    ? "pc."
-                    : ""
+                  element.priceFor === 'meter' ? 'm2' : element.priceFor === 'item' ? 'pc.' : ''
                 }}</span
               >
             </p>
-            <button mat-button color="accent"
-            *ngIf="
-                variants.length > 1 &&
-                form.controls['levelId'].value === level.id
-              "
-              (click)="scrollToElement('variants-' + element.id)">Wybierz wariant</button>
-            <mat-radio-button [value]="level.id"> Wybierz </mat-radio-button>
+            <button
+              mat-button
+              color="accent"
+              *ngIf="variants.length > 1 && form.controls['levelId'].value === level.id"
+              (click)="scrollToElement('variants-' + element.id)">
+              Option auswählen
+            </button>
+            <mat-radio-button [value]="level.id"> Bitte auswählen </mat-radio-button>
           </mat-card-content>
         </mat-card>
       </div>
@@ -61,31 +59,24 @@
     <!-- Variants -->
     <ng-container *ngIf="variants.length">
       <mat-radio-group formControlName="variantId">
-        <h2 class="mat-headline-4 mt-4">Wybierz wariant</h2>
+        <h2 class="mat-headline-4 mt-4">Option auswählen</h2>
         <div class="elements-grid" [id]="'variants-' + element.id">
           <mat-card *ngFor="let variant of variants">
             <mat-card-header>
               <mat-card-title-group class="elements-grid__card-title-group">
-                <img
-                  mat-card-lg-image
-                  [src]="variant.image"
-                  class="elements-grid__image" />
+                <img mat-card-lg-image [src]="variant.image" class="elements-grid__image" />
               </mat-card-title-group>
             </mat-card-header>
             <mat-card-content class="elements-grid__card-content">
               <p [innerHTML]="variant.description"></p>
-              <mat-radio-button [value]="variant.id"> Wybierz </mat-radio-button>
+              <mat-radio-button [value]="variant.id"> Bitte auswählen </mat-radio-button>
               <p class="align-self-end" *ngIf="variant.extraPrice">
                 <span>Mehrpreis </span>
                 <span class="fw-bold">ca. {{ variant.extraPrice | currency }}</span>
                 <span>
                   /
                   {{
-                    element.priceFor === "meter"
-                      ? "m2"
-                      : element.priceFor === "item"
-                      ? "pc."
-                      : ""
+                    element.priceFor === 'meter' ? 'm2' : element.priceFor === 'item' ? 'pc.' : ''
                   }}</span
                 >
               </p>
@@ -97,19 +88,18 @@
 
     <!-- Walls extras -->
     <ng-container *ngIf="element.id === 'walls'">
-      <h3 class="mat-headline-5 mt-4">Tapeta</h3>
+      <h3 class="mat-headline-5 mt-4">Tapete</h3>
       <mat-checkbox formControlName="wallpaper"
-        >Chcę tapetę na ścianach (Mehrpreis <span class="fw-bold">ca. €?? / pc.</span>)</mat-checkbox
+        >Ich möchte Tapete an der Wand (Mehrpreis
+        <span class="fw-bold">ca. €?? / pc.</span>)</mat-checkbox
       >
       <h3 class="mat-headline-5 mt-4">Sufit</h3>
       <mat-radio-group formControlName="ceilingLevelId" #ceilingLevel>
-        <mat-radio-button value="white">Biały</mat-radio-button>
-        <mat-radio-button value="color">Kolor</mat-radio-button>
+        <mat-radio-button value="white">Weiß</mat-radio-button>
+        <mat-radio-button value="color">Farbe</mat-radio-button>
       </mat-radio-group>
-      <mat-form-field
-        *ngIf="form.controls['ceilingLevelId'].value === 'color'"
-        class="ms-3">
-        <mat-label>Kolor RAL</mat-label>
+      <mat-form-field *ngIf="form.controls['ceilingLevelId'].value === 'color'" class="ms-3">
+        <mat-label>RAL-Farbe</mat-label>
         <input type="text" matInput formControlName="ceilingVariantId" />
       </mat-form-field>
     </ng-container>
@@ -117,17 +107,17 @@
     <!-- Floor extras -->
     <ng-container *ngIf="element.id === 'floor'">
       <ng-container *ngIf="form.get('levelId')?.value === 'parkett_2'">
-        <h3 class="mat-headline-5 mt-4">Ułożenie parkietu (względem drzwi wejściowych)</h3>
+        <h3 class="mat-headline-5 mt-4">Parkettverlegung</h3>
         <mat-radio-group formControlName="parquetDirection">
-          <mat-radio-button value="parallel">Równolegle</mat-radio-button>
-          <mat-radio-button value="perpendicular">Prostopadle</mat-radio-button>
-        </mat-radio-group>  
+          <mat-radio-button value="parallel">Parallel</mat-radio-button>
+          <mat-radio-button value="perpendicular">Orthogonal</mat-radio-button>
+        </mat-radio-group>
       </ng-container>
-      <h3 class="mat-headline-5 mt-4">Cokolik</h3>
+      <h3 class="mat-headline-5 mt-4">Sockel</h3>
       <mat-radio-group formControlName="baseboard">
-        <mat-radio-button value="floorColor">Kolor podłogi</mat-radio-button>
-        <mat-radio-button value="white">Biały</mat-radio-button>
-        <mat-radio-button value="other">Inny</mat-radio-button>
+        <mat-radio-button value="floorColor">Bodenfarbe</mat-radio-button>
+        <mat-radio-button value="white">Weiß</mat-radio-button>
+        <mat-radio-button value="other">Andere</mat-radio-button>
       </mat-radio-group>
     </ng-container>
   </form>

@@ -11,45 +11,59 @@
         <span>BEMUSTERUNG</span>
       </mat-toolbar-row>
       <mat-toolbar-row class="justify-content-center">
-        <img
-        src="assets/images/logo-emd.png"
-        alt="EMD Projects"
-        class="header-logo" />
+        <img src="assets/images/logo-emd.png" alt="EMD Projects" class="header-logo" />
       </mat-toolbar-row>
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/c/init" routerLinkActive="active-list-item">Nowy projekt</a>
-      <a mat-list-item routerLink="/c/rooms" routerLinkActive="active-list-item">Pomieszczenia</a>
-      <a mat-list-item routerLink="/c/general" routerLinkActive="active-list-item">Ogólne</a>
-      <a mat-list-item routerLink="/c/general-sanitar" routerLinkActive="active-list-item">Sanitarne</a>
-      <a mat-list-item routerLink="/c/preview/3XN0gt00Ktf2pm18jO6n" routerLinkActive="active-list-item">Podgląd</a>
-      <a mat-list-item (click)="openDialog()">Pliki</a>
-      <a mat-list-item (click)="getPDF()">PDF</a>
+      <a mat-list-item routerLink="/c/init" routerLinkActive="active-list-item">Ihre Bemusterung</a>
+      <a mat-list-item routerLink="/c/rooms" routerLinkActive="active-list-item">Ihre Räume</a>
+      <a mat-list-item routerLink="/c/general" routerLinkActive="active-list-item"
+        >Wohn- und Schlafräume / Küche etc.</a
+      >
+      <a mat-list-item routerLink="/c/general-sanitar" routerLinkActive="active-list-item"
+        >Bad / WC</a
+      >
+      <a
+        mat-list-item
+        routerLink="/c/preview/3XN0gt00Ktf2pm18jO6n"
+        routerLinkActive="active-list-item"
+        >Podgląd</a
+      >
+      <a
+        mat-list-item
+        routerLink="/c/room/86P0cGHDtm1fe3nK14Th/edit"
+        routerLinkActive="active-list-item"
+        >**SANITARNE**</a
+      >
+      <a
+        mat-list-item
+        routerLink="/c/room/pXEfqIyVWr30kE08fBIB/edit"
+        routerLinkActive="active-list-item"
+        >**OGÓLNE**</a
+      >
+      <a mat-list-item (click)="openDialog()">Datei hochladen</a>
+
+      <!-- <a mat-list-item (click)="getPDF()">PDF</a> -->
       <!-- <a mat-list-item routerLink="/c/preview/3XN0gt00Ktf2pm18jO6n" routerLinkActive="active-list-item">Podgląd</a> -->
       <!-- <button mat-raised-button color="accent">Zatwierdź projekt</button> -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span style="flex: 1 1 auto"></span>
-      <span>
-      </span>
+      <span> </span>
       <span style="flex: 1 1 auto"></span>
       <ng-container *ngIf="user$ | async as user">
         <button mat-raised-button extended [matMenuTriggerFor]="menu">
-          {{ user.firstname + " " + user.lastname }}
+          {{ user.firstname + ' ' + user.lastname }}
           <mat-icon>arrow_drop_down</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Profil</button>
-          <button mat-menu-item (click)="authSrv.logout()">Wyloguj</button>
+          <button mat-menu-item (click)="authSrv.logout()">Ausloggen</button>
         </mat-menu>
       </ng-container>
     </mat-toolbar>
